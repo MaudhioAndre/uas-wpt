@@ -1,0 +1,103 @@
+Version: 1.3.315.79
+Branch: dev/perencanaan-acara-tasklist (Branch utama untuk ke dev)
+SC-Branch: dev/perencanaan-acara-tasklist - 1.3.303
+[]: Development without push  
+[0.0.0 - ddmmyy]: Development push
+[M]: Migration
+[MD]: Migration Env Development Server Stuudi(dhammagraha)
+[MP]: Migration Env Production Server Stuudi(dhammagraha)
+[MB]: Migration Env Bloomreef
+
+[1.3.315.67 - 020322]
+- rewrite insert x, y, width, height, fontsize
+
+[1.3.315.67 - 010322]
+- fix produk patidana ketika edit kegiatan
+
+[1.3.315.20 - 040222]
+- fix feed admin subweb
+
+[1.3.315.20 - 030222]
+- tambah keterangan acara dibatalkan sesuai kondisinya
+- fix preview gambar perlengkapan jadi banyak setelah tambah acara
+
+[1.3.315.20 - 020222]
+- fix check pembayaran jika booking order pertama kehadiran tidak hadir lalu pilih paket donasi
+- fix status pembayaran bayar sebagian
+- fix penugasan acara tertentu masih muncul pdhal acaranya sudah dibatalkan
+
+[1.3.315.20 - 010222]
+- fix donasi copy acara hilang ketika di edit
+
+[1.3.315.54 - 310122]
+- tambah kondisi cronjob acara dibatalkan, acara dibatalkan ketika sudah atur jadwal 
+  tetapi belum atur penugasan dan sudah melewati tanggal mulai acara
+
+[1.3.315.20 - 280122]
+- fix copy task salin acara. ketika template di hapus, task template itu tidak ikut terhapus
+
+[1.3.315.20 - 270122]
+- update terima acara semua, acara rutin
+
+[1.3.315.20 - 260122]
+- fix donasi acara tidak tersalin di acara rutin
+
+[1.3.315.41 - 250122]
+- fix edit acara rutin masuk ke halaman persetujuan lagi
+- fix koreksi acara
+- fix log status acara rutin kosong
+- fix template acara rutin ke 2 dan seterusnya hilang / tidak tersimpan(#148)
+
+[1.3.315.20 - 240122]
+- template yang memiliki lebih dari 1 master di acara rutin
+
+[1.3.315.20 - 200122]
+- update tahun notif wa
+- fix data laporan kosong
+- fix tidak bis simpan dan kirim acara rutin yang lebih dari 2
+
+[1.3.315.20 - 190122]
+- fix spinner loading berlebih ketika banyak template di acara
+- fix biaya acara rutin hilang
+
+[1.3.315.20 - 180122]
+- fix persetujuan + cronjob
+- fix tipe penyelesaian task tidak tersalin ketika salin acara 
+- fix disable koordinator bagian di atur jadwal acara salin
+
+[1.3.315.1 - 130122]
+- reset task yg telah dibuat jadwal ketika task di reassign
+- add detail acara rutin di persetujuan acara
+
+[1.3.315.2 - 080121]
+- fix log acara selesai(ppa#97)
+
+[1.3.315.2 - 050121]
+- add notif reassign task untuk koordinator bagian(ppa#91)
+- fix & di notif browser
+
+[1.3.315.2 - 040121]
+- order saat edit acara 
+- fix uncheck tidak menghapus data lampiran, biaya, donasi, kehadiran
+
+[1.3.311.7 - 311221]
+- [NEW] add cronjob auto set status acara selesai
+
+[1.3.311.7 - 301221]
+- [NEW] add reminder to complete assignment task (ppa#53, ppa#54)
+- [NEW] add reminder koordinator acara ketika koordinator bagian belum melengkapi penugasan task(ppa#60, ppa#61)
+- [NEW] add reminder koordinator acara untuk menyusun task dan kirim task ke petugas
+- fix acara rutin, jika tanggal mulai dan tanggal selesai acara sama(ppa#87, ppa#88)
+
+[1.3.311.6 - 291221]
+- fix task per petugas hilang jika acara memiliki 2 template, lalu template satu sudah confirm task terlebih dahulu(ppa#77)
+
+[1.3.308.5 - 271221]
+- fix tidak ada acara di penugasan task jika template bagian tidak memiliki template task
+
+[1.3.308.5 - 211221]
+- add menu tipe penyelesaian task
+
+[1.3.308.5 - 201221]
+- update disable select koordinator bagian di atur jadwal ketika sudah confirm task(ppa#73)
+- tipe penyelesaian task - set get tipe penyelesaian task

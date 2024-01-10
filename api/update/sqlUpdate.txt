@@ -1,0 +1,2384 @@
+090322
+ALTER TABLE `patidana_foto` ADD `xPdf` VARCHAR(255) NULL DEFAULT NULL AFTER `y`, ADD `yPdf` VARCHAR(255) NULL DEFAULT NULL AFTER `xPdf`;
+ALTER TABLE `patidana_nama` ADD `xPdf` VARCHAR(255) NULL DEFAULT NULL AFTER `y`, ADD `yPdf` VARCHAR(255) NULL DEFAULT NULL AFTER `xPdf`;
+
+040322
+UPDATE `master_kegiatan_laporan` SET `TipeLaporan` = 'Cetak Altar', `LabelLaporan` = 'CetakAltar', `ModalLaporan` = 'openModalPilihTipeCetakAltar' WHERE `master_kegiatan_laporan`.`Id` = 10;
+
+040322
+DELETE FROM `master_kegiatan_laporan` WHERE `master_kegiatan_laporan`.`Id` = 9;
+UPDATE `master_kegiatan_laporan` SET `ModalLaporan` = 'openLaporanKeuanganPatidana' WHERE `master_kegiatan_laporan`.`Id` = 8;
+
+020322
+ALTER TABLE `patidana` CHANGE `Paket` `Paket` VARCHAR(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+250221
+ALTER TABLE `patidana` ADD `FontSize` VARCHAR(20) NULL DEFAULT NULL AFTER `LayoutFoto`;
+
+250221
+add patidana_forward.sql
+
+150221
+============== Form Patidana ==============
+210222
+DELETE FROM `master_kegiatan_laporan` WHERE `master_kegiatan_laporan`.`Id` = 6;
+DELETE FROM `master_kegiatan_laporan` WHERE `master_kegiatan_laporan`.`Id` = 7;
+INSERT INTO `master_kegiatan_laporan` (`Id`, `TypeForm`, `TipeLaporan`, `LabelLaporan`, `ModalLaporan`) VALUES (NULL, 'PD', 'Laporan Keuangan', 'LaporanKeuangan', 'openLaporanKeuanganKathina2'), (NULL, 'PD', 'Laporan Kehadiran', 'LaporanKehadiran', 'openLaporanKehadiranKathina2'), (NULL, 'PD', 'Cetak Stiker', 'CetakStiker', 'openModalPilihTipeCetak');
+============== Form Patidana ==============
+260222
+ALTER TABLE `patidana_nama` ADD `x` VARCHAR(255) NULL DEFAULT NULL AFTER `Nama`, ADD `y` VARCHAR(255) NULL DEFAULT NULL AFTER `x`, ADD `FontSize` VARCHAR(255) NULL DEFAULT NULL AFTER `y`;
+
+250221
+ALTER TABLE `patidana` ADD `FontSize` VARCHAR(20) NULL DEFAULT NULL AFTER `LayoutFoto`;
+
+250221
+add patidana_forward.sql
+
+230222
+ALTER TABLE `patidana_foto`  ADD `width` VARCHAR(255) NULL DEFAULT NULL  AFTER `y`,  ADD `height` VARCHAR(255) NULL DEFAULT NULL  AFTER `width`;
+
+220222
+ALTER TABLE `patidana_foto`  ADD `x` VARCHAR(255) NULL DEFAULT NULL  AFTER `file`,  ADD `y` VARCHAR(255) NULL DEFAULT NULL  AFTER `x`;
+
+210222
+DELETE FROM `master_kegiatan_laporan` WHERE `master_kegiatan_laporan`.`Id` = 6;
+DELETE FROM `master_kegiatan_laporan` WHERE `master_kegiatan_laporan`.`Id` = 7;
+INSERT INTO `master_kegiatan_laporan` (`Id`, `TypeForm`, `TipeLaporan`, `LabelLaporan`, `ModalLaporan`) VALUES (NULL, 'PD', 'Laporan Keuangan', 'LaporanKeuangan', 'openLaporanKeuanganKathina2'), (NULL, 'PD', 'Laporan Kehadiran', 'LaporanKehadiran', 'openLaporanKehadiranKathina2'), (NULL, 'PD', 'Cetak Stiker', 'CetakStiker', 'openModalPilihTipeCetak');
+============== Form Patidana ==============
+
+150222
+ALTER TABLE `bk_order` ADD `IdPatidana` VARCHAR(30) NULL DEFAULT NULL AFTER `IdProduct`;
+ALTER TABLE `patidana` ADD `Paket` VARCHAR(100) NULL DEFAULT NULL AFTER `NamaPemesan`;
+ALTER TABLE `patidana` CHANGE `Paket` `Paket` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `patidana` CHANGE `IdJawaban` `IdJawaban` VARCHAR(50) NOT NULL;
+ALTER TABLE `patidana_nama` CHANGE `IdJawaban` `IdJawaban` VARCHAR(50) NOT NULL;
+ALTER TABLE `patidana_foto` CHANGE `IdJawaban` `IdJawaban` VARCHAR(50) NOT NULL;
+ALTER TABLE `patidana` CHANGE `IdUser` `IdUser` VARCHAR(50) NOT NULL;
+
+============== Form Patidana ==============
+150222
+INSERT INTO `master_kegiatan_laporan` (`Id`, `TypeForm`, `TipeLaporan`, `LabelLaporan`, `ModalLaporan`) VALUES (NULL, 'PD', 'Laporan Kehadiran', 'LaporanKehadiran', 'openLaporanKehadiranPatidana'), (NULL, 'PD', 'Cetak Stiker', 'CetakStiker', 'openModalPilihTipeCetak');
+ALTER TABLE `kalender_kegiatan` CHANGE `TypeForm` `TypeForm` CHAR(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT 'kathina/pujabakti/patidana (K/P/PD)';
+ALTER TABLE `booking_acara` CHANGE `TypeForm` `TypeForm` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'K' COMMENT 'Kathina/Pujabakti/Patidana (K/P/PD)';
+ALTER TABLE `action_parameter` CHANGE `IdList` `IdList` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '(TypeForm)\r\nK = kathina\r\nP = Puja bakti PD = Patidana';
+INSERT INTO `action_parameter_data` (`Id`, `IdAction`, `FilterData`, `LangData`, `Catatan`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, '9', 'BB', 'BelumBayar', '', '2021-11-02 10:38:06', NULL), (NULL, '9', 'BS', 'BayarSebagian', '', '2021-11-02 10:38:06', NULL), (NULL, '9', 'SB', 'SudahBayar', '', '2021-11-02 10:38:06', NULL), (NULL, '9', 'K', 'Lunas', '', '2021-11-02 10:38:06', NULL), (NULL, '10', 'HP', 'HadirPuja', '', '2021-11-02 10:38:06', NULL), (NULL, '10', 'TH', 'TidakHadir', '', '2021-11-02 10:38:06', NULL), (NULL, '11', 'L', 'laki', '', '2021-11-01 14:07:22', '2021-11-01 14:52:11'), (NULL, '11', 'P', 'perempuan', '', '2021-11-01 14:07:22', '2021-11-01 14:52:20'), (NULL, '12', NULL, 'KodeBooking', '', '2021-11-03 09:14:39', NULL), (NULL, '13', NULL, 'Nama', '', '2021-11-03 09:14:39', NULL);
+============== Form Patidana ==============
+
+020221
+DROP PROCEDURE `CheckPembayaran`;
+CREATE PROCEDURE `CheckPembayaran`(IN `param_kodepemesanan` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255)) DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+    CASE 
+        WHEN SUM(a.Total) <= IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0)
+            THEN 1
+        ELSE 0
+    END AS Status,
+    (
+		SELECT StatusKonfirmasi FROM booking_acara WHERE TipePendaftar = 'Pendaftar' AND KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan
+    ) AS StatusKonfirmasi,
+ 	a.Total,
+    IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) AS Bayar,
+ 	SUM(a.Total) - IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) Sisa
+FROM 
+(
+    SELECT 
+        bo.KodePemesanan, IFNULL(bp.Harga, bo.NominalDonasi) Harga, bo.Quantity, IFNULL(bp.Harga, bo.NominalDonasi) * bo.Quantity AS Total
+        FROM bk_order bo 
+    LEFT JOIN bk_product bp ON bp.Id = bo.IdProduct 
+    INNER JOIN booking_acara ba ON ba.Id = bo.IdBooking
+    WHERE bo.RecordStatus != 'D' AND bo.KodePemesanan = param_kodepemesanan AND ba.IdKegiatan = param_idkegiatan
+) a
+
+240121
+add temp_notif_reassign_task.sql
+
+150121
+ALTER TABLE `log_acara` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `IdAcara`, `Status`);
+
+141021
+ALTER TABLE `schedule_acara` ADD `CreatedBy` INT(255) NULL DEFAULT NULL AFTER `CreatedAt`;
+add temp_schedule_acara.sql
+
+100121
+ALTER TABLE kehadiran_penyelesaian_task DROP INDEX `IdAcara`;
+ALTER TABLE `kehadiran_penyelesaian_task` DROP `IdTask`;
+ALTER TABLE kehadiran_penyelesaian_task ADD CONSTRAINT new UNIQUE (IdAcara);
+
+060122
+ALTER TABLE `lampiran_task` ADD `IdItem` VARCHAR(30) NULL DEFAULT NULL AFTER `IdTask`;
+
+040122
+add biaya_penyelesaian_task.sql
+add donasi_penyelesaian_task.sql
+
+020121
+ALTER TABLE `mt_isi_laporan_acara` ADD `Orders` INT(3) NULL DEFAULT NULL AFTER `Isi`;
+
+271221
+add kehadiran_penyelesaian_task.sql
+
+231221
+ALTER TABLE `acara` ADD `PasswordLaporanAcara` VARCHAR(50) NOT NULL DEFAULT '' AFTER `DateConfirmTask`;
+ALTER TABLE `sub_web` ADD `PasswordLaporanAcara` VARCHAR(50) NOT NULL DEFAULT '' AFTER `IntervalReminderTask`;
+add default_penerima_laporan_acara.sql
+add penerima_laporan_acara.sql
+add mt_isi_laporan_acara.sql
+
+211221
+ALTER TABLE `acara` ADD `ReassignTask` VARCHAR(2) NOT NULL DEFAULT '0' COMMENT '1/0' AFTER `DateConfirmTask`;
+
+061221
+ALTER TABLE `kalender_kegiatan` ADD `IdAcara` VARCHAR(30) NULL DEFAULT NULL AFTER `TypeForm`;
+211221
+ALTER TABLE `acara` ADD `ReassignTask` VARCHAR(2) NOT NULL DEFAULT '0' COMMENT '1/0' AFTER `DateConfirmTask`;
+
+--tipe penyelesaian task petugas
+221221
+add tipe_penyelesaian_task_petugas.sql
+
+231221
+update tipe_penyelesaian_task_petugas.sql
+
+--tipe penyelesaian task petugas
+
+--tipe penyelesaian task
+201221
+add tipe_penyelesaian_task.sql
+
+211221
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('29000', 'Tipe Penyelesaian Task', '/tipe-penyelesaian-task', '/admin', 'PAPenyelesaianTask', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/task-check.png', '0', NULL, '', 'Admin', '2021-11-10 10:31:19', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '29000', 'N', 'N', 'N', 'N', 'N', '', current_timestamp(), '', '');
+
+--tipe penyelesaian task
+
+141221
+ALTER TABLE `acara`  ADD `LastReminderPersiapan` DATETIME NULL DEFAULT NULL COMMENT 'tanggal terakhir reminder sebelum tanggal persiapan'  AFTER `IntervalReminderPersiapan`;
+ALTER TABLE `acara` CHANGE `LevelStatus` `LevelStatus` INT(10) NOT NULL COMMENT '0=Draf\r\n1=perencanaan\r\n2=persetujuan\r\n3=persiapan\r\n4=pelaksanaan\r\n5=Selesai';
+
+131221
+ALTER TABLE `acara`  ADD `ReminderPersiapan` INT(255) NOT NULL COMMENT 'jumlah hari'  AFTER `Persiapan`,  ADD `IntervalReminderPersiapan` VARCHAR(255) NULL DEFAULT NULL COMMENT 'jam/hari'  AFTER `ReminderPersiapan`;
+
+091221
+ALTER TABLE `acara` ADD `ParentId` VARCHAR(255) NULL AFTER `Id`;
+
+061221
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 24000
+ALTER TABLE `kalender_kegiatan` ADD `IdAcara` VARCHAR(30) NULL DEFAULT NULL AFTER `TypeForm`;
+add reminder_petugas_task.sql
+
+--tasklist
+  161121
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '24000', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+
+  171121
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10500', 'Task List Ruangan', '/task-list/ruangan', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '10000', '', 'Admin', current_timestamp(), '', '');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '10500', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00');
+
+  181121
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12400', 'Task List Dekorasi', '/task-list/dekorasi', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '12000', '', 'Admin', '2021-11-17 20:34:41', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '12400', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00');
+  ALTER TABLE `acara` ADD `ConfirmTask` VARCHAR(2) NOT NULL DEFAULT '0' COMMENT '1/0' AFTER `CatatanPenolakan`;
+  ALTER TABLE `acara` ADD `DateConfirmTask` DATETIME NULL AFTER `ConfirmTask`;
+  ALTER TABLE `acara` ADD `SendTaskToPIC` VARCHAR(2) NOT NULL DEFAULT '0' COMMENT '(status task sudah di kirim apa belum ke user petugas) (1/0)' AFTER `ConfirmTask`;
+
+  191121
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10400', 'Task Ruangan', '/template-task/ruangan', '/admin', 'PATemplateTask', 'ni ni-bullet-list-67 text-info', NULL, '0', '10000', '', 'Admin', '2020-08-14 13:32:44', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12300', 'Task Dekorasi', '/template-task/dekorasi', '/admin', 'PATemplateTask', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '', '12000', '', 'Admin', '2021-02-17 08:01:48', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '10400', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '12300', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  
+  221121
+  add task_acara.sql
+
+  -231121
+  add template_task.sql
+  add ms_task.sql
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11400', 'Task Perlengkapan', '/template-task/perlengkapan', '/admin', 'PATemplateTask', NULL, NULL, '0', '11000', '', 'Admin', '2021-02-24 16:29:18', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('13300', 'Task Dokumentasi', '/template-task/dokumentasi', '/admin', 'PATemplateTask', NULL, NULL, '0', '13000', '', 'Admin', '2021-02-24 16:29:18', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14400', 'Task Konsumsi', '/template-task/konsumsi', '/admin', 'PATemplateTask', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '14000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('15300', 'Task Transportasi', '/template-task/transportasi', '/admin', 'PATemplateTask', NULL, NULL, '0', '15000', '', '', '2021-03-02 17:09:36', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('16300', 'Task Petugas', '/template-task/petugas', '/admin', 'PATemplateTask', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '16000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('17300', 'Task Komunikasi', '/template-task/komunikasi', '/admin', 'PATemplateTask', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '17000', '', 'Admin', '2021-03-09 14:50:42', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '11400', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '13300', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '14400', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '15300', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '16300', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '17300', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+
+  add petugas_task.sql
+
+  251121
+  UPDATE `admin_menu` SET `MenuName` = 'Penugasan Task Dekorasi' WHERE `admin_menu`.`Id` = 12400; UPDATE `admin_menu` SET `MenuName` = 'Penugasan Task Ruangan' WHERE `admin_menu`.`Id` = 10500;
+
+  add lampiran_task.sql
+
+  INSERT INTO `admin_menu` 
+  (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES 
+  ('11500', 'Penugasan Task Perlengkapan', '/task-list/perlengkapan', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '11000', '', 'Admin', current_timestamp(), '', ''),
+  ('13400', 'Penugasan Task Dokumentasi', '/task-list/dokumentasi', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '13000', '', 'Admin', current_timestamp(), '', ''),
+  ('14500', 'Penugasan Task Konsumsi', '/task-list/konsumsi', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '14000', '', 'Admin', current_timestamp(), '', ''),
+  ('15400', 'Penugasan Task Transportasi', '/task-list/transportasi', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '15000', '', 'Admin', current_timestamp(), '', ''),
+  ('16400', 'Penugasan Task Petugas', '/task-list/petugas', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '16000', '', 'Admin', current_timestamp(), '', ''),
+  ('17400', 'Penugasan Task Komunikasi', '/task-list/komunikasi', '/admin', 'PATaskListPerTemplate', 'fas fa-tasks', NULL, '0', '17000', '', 'Admin', current_timestamp(), '', '');
+  
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES 
+  ('AM', '11500', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00'),
+  ('AM', '13400', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00'),
+  ('AM', '14500', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00'),
+  ('AM', '15400', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00'),
+  ('AM', '16400', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00'),
+  ('AM', '17400', 'N', 'N', 'N', 'N', '', '', '2021-01-27 13:27:02', '', '0000-00-00 00:00:00');
+
+  261121
+  ALTER TABLE `task_acara` ADD `TypeTemplate` VARCHAR(255) NOT NULL AFTER `IdMsTask`;
+
+  -291121
+  ALTER TABLE `task_acara` CHANGE `CompletedAt` `CompletedStartDate` DATETIME NOT NULL;
+  ALTER TABLE `task_acara` ADD `CompletedFinishDate` DATETIME NULL AFTER `CompletedStartDate`;
+
+  301121
+  add koordinator_bagian_acara.sql
+  ALTER TABLE `role` CHANGE `KodeRole` `KodeRole` VARCHAR(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+  ALTER TABLE `role_user` CHANGE `KodeRole` `KodeRole` VARCHAR(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('17500', 'Pelaksanaan Task Komunikasi', '/pelaksanaan-task/komunikasi', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '17000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('16500', 'Pelaksanaan Task Petugas', '/pelaksanaan-task/petugas', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '16000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('15500', 'Pelaksanaan Task Transportasi', '/pelaksanaan-task/transportasi', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '15000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14600', 'Pelaksanaan Task Konsumsi', '/pelaksanaan-task/konsumsi', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '14000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('13500', 'Pelaksanaan Task Dokumentasi', '/pelaksanaan-task/dokumentasi', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '13000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12500', 'Pelaksanaan Task Dekorasi', '/pelaksanaan-task/dekorasi', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '12000', '', 'Admin', '2021-11-26 13:19:35', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11600', 'Pelaksanaan Task Perlengkapan', '/pelaksanaan-task/perlengkapan', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '11000', '', 'Admin', '2021-11-26 13:19:19', '', '0000-00-00 00:00:00');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10600', 'Pelaksanaan Task Ruangan', '/pelaksanaan-task/ruangan', '/admin', 'PAPelaksanaanTask', 'fas fa-tasks', NULL, '0', '10000', '', 'Admin', '2021-11-26 13:19:35', '', '0000-00-00 00:00:00');
+
+  011221
+  ALTER TABLE `acara` CHANGE `Status` `Status` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Perencanaan' COMMENT 'Perencanaan, Persetujuan, Perbaikan, Penolakan, Koreksi, Persiapan, Dibatalkan, Pelaksanaan ';
+
+  061221
+  add reminder_petugas_task.sql
+
+  031221
+  ALTER TABLE `sub_web` ADD `IntervalReminderTask` VARCHAR(50) NOT NULL DEFAULT '6 jam' AFTER `TanyaSubs`;
+
+  091221
+  add catatan_reassign_task.sql
+
+--tasklist
+
+- 181121
+DROP PROCEDURE `getKehadiranAcara`;
+DELIMITER $$
+CREATE PROCEDURE `getKehadiranAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), OUT `TotalL` INT(255), OUT `DipesanL` INT(255), OUT `HadirL` INT(255), OUT `TotalP` INT(255), OUT `HadirP` INT(255), OUT `DipesanP` INT(255)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+DECLARE NamaKegiatan VARCHAR(255);
+
+SET TotalL = 0;
+SET DipesanL = 0;
+SET HadirL = 0;
+SET TotalP = 0;
+SET DipesanP = 0;
+SET HadirP = 0;
+
+-- total kapasitas
+SELECT MaxL INTO TotalL FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+SELECT MaxP INTO TotalP FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+
+-- total booking
+-- laki - laki
+SELECT COUNT(ba.Id) INTO DipesanL
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'L' AND
+    ba.CountedKapasitas = 1;
+    
+-- perempuan
+SELECT COUNT(ba.Id) INTO DipesanP
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'P' AND
+    ba.CountedKapasitas = 1;
+
+-- total hadir
+-- laki - laki
+SELECT COUNT(ua.IdKegiatan) INTO HadirL FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'L' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = param_idkegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+-- perempuan
+SELECT COUNT(ua.IdKegiatan) INTO HadirP FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'P' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = ua.IdKegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+SELECT Judul INTO NamaKegiatan FROM kalender_kegiatan WHERE Id = param_idkegiatan;
+
+SELECT NamaKegiatan, TotalL, DipesanL, HadirL, TotalP, DipesanP, HadirP;
+
+END$$
+DELIMITER ;
+
+ALTER TABLE `bk_notif_wa` ADD `RecordStatus` CHAR(1) NOT NULL DEFAULT 'N' COMMENT 'N/D' AFTER `IdNotif`;
+- 131121
+add chatbot_temp_history.sql
+
+- 121121
+ALTER TABLE `chatbot_store_question` DROP PRIMARY KEY;
+ALTER TABLE `chatbot_store_question` DROP `State`;
+ALTER TABLE chatbot_store_question
+ADD CONSTRAINT PK PRIMARY KEY (IdPesan);
+
+- 111121
+ALTER TABLE chatbot_session ADD CONSTRAINT IDX_UNIQUE_NOTLP UNIQUE KEY (NoTlp);
+ALTER TABLE chatbot_session_detail ADD CONSTRAINT IDX_UNIQUE_IDPESAN UNIQUE KEY (IdPesan);
+add chatbot_store_question.sql
+
+- add kegiatan_laporan.sql
+- add master_kegiatan_laporan.sql
+
+- 101121
+UPDATE `admin_menu` SET `Path` = '/scanqr' WHERE `admin_menu`.`Id` = 28300;
+
+- 041121
+ALTER TABLE `sub_web` DROP `TanyaSubs`;
+ALTER TABLE `sub_web` ADD `TanyaSubs` VARCHAR(50) NOT NULL DEFAULT '1 hari' COMMENT 'contoh : 5 menit, 1 jam, 1 hari' AFTER `LinkStorePatidana`;
+
+--log WA
+ALTER TABLE `master_sequence` CHANGE `idkegiatan` `idkegiatan` INT(255) NULL;
+ALTER TABLE `master_sequence` CHANGE `idsubweb` `idsubweb` INT(255) NULL;
+add log_notif_wa.sql, reminder_notif_wa.sql, bk_notif_wa.sql
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setLogWaSequence`()
+    NO SQL
+BEGIN
+DECLARE vkode VARCHAR(255) DEFAULT 'LogWa';
+DECLARE vgenerateKode VARCHAR(255);
+DECLARE currentCount INT(255);
+DECLARE countAccu INT(255);
+
+SELECT IFNULL(SUM(last_number), 0) INTO currentCount FROM master_sequence WHERE kode = vkode FOR UPDATE;
+
+IF currentCount = 0 THEN
+    INSERT INTO master_sequence (kode, last_number) VALUES (vkode, 1);
+    SET vgenerateKode = CONCAT(vkode, 1);
+ELSE
+    SET countAccu = currentCount + 1;
+    
+    UPDATE master_sequence SET last_number = countAccu WHERE kode = vkode;
+    SET vgenerateKode = CONCAT(vkode, countAccu);
+END IF;
+
+SELECT vgenerateKode AS Id;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saveBookingNotifWA`(IN `param_idnotif` VARCHAR(255), IN `param_type` VARCHAR(255), IN `param_idbooking` VARCHAR(255), IN `param_kodepemesanan` VARCHAR(255), IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), IN `param_notlp` VARCHAR(255), IN `param_message` LONGTEXT, IN `param_file` LONGTEXT, IN `param_status` VARCHAR(255))
+    NO SQL
+BEGIN
+INSERT INTO `log_notif_wa`(`Id`, `IdSubweb`, `IdKegiatan`, `NoTlp`, `Type`, `Message`, `File`, `Status`) VALUES (param_idnotif, param_idsubweb, param_idkegiatan, param_notlp, param_type, param_message, param_file, param_status);
+INSERT INTO `bk_notif_wa`(`IdBooking`, `KodePemesanan`, `IdNotif`) VALUES (param_idbooking, param_kodepemesanan, param_idnotif);
+END$$
+DELIMITER ;
+--log WA
+
+- 031121
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 11;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 12;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 13;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 14;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 15;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 16;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 17;
+DELETE FROM `action_parameter_data` WHERE `action_parameter_data`.`Id` = 18;
+ALTER TABLE `action_parameter_data`
+  DROP `ASC`,
+  DROP `Numeric`;
+INSERT INTO `action_parameter_data` (`Id`, `IdAction`, `FilterData`, `LangData`, `Catatan`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, '5', NULL, 'KodeBooking', '', current_timestamp(), NULL), (NULL, '6', NULL, 'Nama', '', current_timestamp(), NULL);
+INSERT INTO `action_parameter_data` (`Id`, `IdAction`, `FilterData`, `LangData`, `Catatan`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, '7', NULL, 'KodeBooking', '', current_timestamp(), NULL), (NULL, '8', NULL, 'Nama', '', current_timestamp(), NULL);
+
+-- add role unsubscribe
+INSERT INTO role(KodeRole,Role,IdSubWeb) SELECT LEFT(UPPER(MD5(RAND())), 8) as kode, 'Unsubscribe', s.Id FROM sub_web s WHERE s.Id NOT IN (SELECT IdSubWeb FROM role WHERE Role='Unsubscribe')
+
+- 021121
+ALTER TABLE `action_parameter` ADD `JenisSort` VARCHAR(255) NULL AFTER `JenisFilter`;
+ALTER TABLE `action_parameter` CHANGE `JenisFilter` `JenisFilter` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT 'gender/status/kehadiran/dll';
+INSERT INTO `action_parameter` (`Id`, `Type`, `IdList`, `JenisFilter`, `JenisSort`, `NameState`, `Catatan`, `RecordStatus`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, 'sort', 'K', NULL, 'kodepemesanan', 'KodePemesanan', '', 'N', current_timestamp(), NULL), (NULL, 'sort', 'K', NULL, 'namapendaftar', 'NamaPendaftar', '', 'N', current_timestamp(), NULL);
+INSERT INTO `action_parameter` (`Id`, `Type`, `IdList`, `JenisFilter`, `JenisSort`, `NameState`, `Catatan`, `RecordStatus`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, 'sort', 'P', NULL, 'kodepemesanan', 'KodePemesanan', '', 'N', current_timestamp(), NULL), (NULL, 'sort', 'P', NULL, 'namapendaftar', 'NamaPendaftar', '', 'N', current_timestamp(), NULL);
+//UPDATE `action_parameter` SET `Id` = '5' WHERE `action_parameter`.`Id` = 13; UPDATE `action_parameter` SET `Id` = '6' WHERE `action_parameter`.`Id` = 14; UPDATE `action_parameter` SET `Id` = '7' WHERE `action_parameter`.`Id` = 15; UPDATE `action_parameter` SET `Id` = '8' WHERE `action_parameter`.`Id` = 16;
+ALTER TABLE `action_parameter_data` CHANGE `FilterData` `FilterData` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT 'Isi data yang akan di filter';
+ALTER TABLE `action_parameter_data` ADD `ASC` INT(255) NOT NULL DEFAULT '0' COMMENT 'ascending' AFTER `FilterData`, ADD `Numeric` INT(255) NOT NULL DEFAULT '0' AFTER `ASC`;
+
+INSERT INTO `action_parameter_data` (`Id`, `IdAction`, `FilterData`, `ASC`, `Numeric`, `LangData`, `Catatan`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, '5', 'KASC', '1', '1', 'KodeBooking', '', current_timestamp(), NULL), (NULL, '5', 'KDESC', '0', '1', 'KodeBooking', '', current_timestamp(), NULL), (NULL, '6', 'NASC', '1', '0', 'Nama', '', current_timestamp(), NULL), (NULL, '6', 'NDESC', '0', '0', 'Nama', '', current_timestamp(), NULL);
+INSERT INTO `action_parameter_data` (`Id`, `IdAction`, `FilterData`, `ASC`, `Numeric`, `LangData`, `Catatan`, `CreatedAt`, `UpdatedAt`) VALUES (NULL, '7', 'KASC', '1', '1', 'KodeBooking', '', '2021-11-02 14:50:16', NULL), (NULL, '7', 'KDESC', '0', '1', 'KodeBooking', '', '2021-11-02 14:50:16', NULL), (NULL, '8', 'NASC', '1', '0', 'Nama', '', '2021-11-02 14:50:16', NULL), (NULL, '8', 'NDESC', '0', '0', 'Nama', '', '2021-11-02 14:50:16', NULL);
+
+- 011121
+action_parameter.sql, action_parameter_data.sql
+
+-291021
+DROP PROCEDURE `setKapasitasSequence`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setKapasitasSequence`(IN `param_type` VARCHAR(10), IN `param_idsubweb` INT(255), IN `param_idkegiatan` INT(255), IN `param_kode` VARCHAR(255))
+    NO SQL
+BEGIN
+DECLARE kodepemesanan VARCHAR(255);
+DECLARE currentCount INT(255);
+DECLARE countAccu INT(255);
+
+SELECT IFNULL(SUM(last_number), 0) INTO currentCount FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode) FOR UPDATE;
+
+IF currentCount = 0 THEN
+	IF param_type = 'plus' THEN
+        INSERT INTO master_sequence (idsubweb, idkegiatan, kode, last_number) VALUES (param_idsubweb, param_idkegiatan, UPPER(param_kode), 1);
+        SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(1, 3, '0'));
+    END IF;
+ELSE
+	IF param_type = 'plus' THEN
+    	SET countAccu = currentCount + 1;
+	ELSEIF param_type = 'minus' THEN
+        SET countAccu = GREATEST((currentCount - 1), 0);
+    END IF;
+    
+    IF countAccu = 0 THEN
+    	DELETE FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode);
+    ELSE 
+        UPDATE master_sequence SET last_number = countAccu WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode);
+        SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(countAccu, 3, '0'));
+    END IF;
+END IF;
+END$$
+DELIMITER ;
+
+-281021
+DROP PROCEDURE `autoAddUserVIP`;
+DELIMITER $$
+CREATE PROCEDURE `autoAddUserVIP`(IN `param_username` VARCHAR(255), IN `param_password` VARCHAR(255), IN `param_otp` VARCHAR(255), IN `param_notlp` VARCHAR(255), IN `param_idCountry` VARCHAR(255), IN `param_jeniskelamin` VARCHAR(255), IN `param_createdby` VARCHAR(255)) DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+INSERT INTO user(Username, Password, OTP, NoTlp, IdCountry, JenisKelamin, CreatedBy) VALUES (param_username, param_password, param_otp, param_notlp, param_idCountry, param_jeniskelamin, param_createdby);
+SELECT LAST_INSERT_ID() Id;
+END$$
+DELIMITER ;
+
+-271021
+UPDATE `admin_menu` SET `Path` = '/acara' WHERE `admin_menu`.`Id` = 28000; UPDATE `admin_menu` SET `Path` = '/acara' WHERE `admin_menu`.`Id` = 28100;
+
+-261021
+==== update no tlp selain 089 ke 6289 ====
+UPDATE user SET NoTlp = CONCAT('62', NoTlp) WHERE LEFT(NoTlp,2) != '62' AND LEFT(NoTlp,2) != '61'
+==== update no tlp selain 089 ke 6289 ====
+
+ALTER TABLE `booking_acara` ADD INDEX(`KodePemesanan`);
+
+==== getkapasitas & setkapasitas sequence ====
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getKapasitasSequence`(IN `param_idsubweb` INT(255), IN `param_idkegiatan` INT(255))
+    NO SQL
+BEGIN
+DECLARE var_MaxL INT(255);
+DECLARE var_MaxP INT(255);
+DECLARE L INT(255);
+DECLARE P INT(255);
+
+SELECT IFNULL(SUM(MaxL), 0) INTO var_MaxL FROM bk_ruangan WHERE IdSubweb = param_idsubweb AND IdKegiatan = param_idkegiatan;
+
+SELECT IFNULL(SUM(MaxP), 0) INTO var_MaxP FROM bk_ruangan WHERE IdSubweb = param_idsubweb AND IdKegiatan = param_idkegiatan;
+
+SELECT IFNULL(SUM(last_number), 0) INTO P FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = 'P';
+
+SELECT IFNULL(SUM(last_number), 0) INTO L FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = 'L';
+
+SELECT var_MaxL AS MaxL, L, var_MaxP AS MaxP, P;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setKapasitasSequence`(IN `param_type` VARCHAR(10), IN `param_idsubweb` INT(255), IN `param_idkegiatan` INT(255), IN `param_kode` VARCHAR(255))
+    NO SQL
+BEGIN
+DECLARE kodepemesanan VARCHAR(255);
+DECLARE currentCount INT(255);
+DECLARE countAccu INT(255);
+
+SELECT IFNULL(SUM(last_number), 0) INTO currentCount FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode) FOR UPDATE;
+
+IF currentCount = 0 THEN
+	IF param_type = 'plus' THEN
+        INSERT INTO master_sequence (idsubweb, idkegiatan, kode, last_number) VALUES (param_idsubweb, param_idkegiatan, UPPER(param_kode), 1);
+        SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(1, 3, '0'));
+    END IF;
+ELSE
+	IF param_type = 'plus' THEN
+    	SET countAccu = currentCount + 1;
+	ELSEIF param_type = 'minus' THEN
+        SET countAccu = GREATEST((currentCount - 1), 0);
+    END IF;
+    
+    UPDATE master_sequence SET last_number = countAccu WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode);
+    SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(countAccu, 3, '0'));
+END IF;
+END$$
+DELIMITER ;
+==== getkapasitas & setkapasitas sequence ====
+
+add chatbot_option.sql
+add chatbot_subs_question.sql
+ALTER TABLE `sub_web` ADD `LinkStorePatidana` TEXT NULL DEFAULT NULL AFTER `FontStyleBanner`;
+ALTER TABLE `sub_web` ADD `TanyaSubs` VARCHAR(50) NULL DEFAULT NULL COMMENT 'diisi satuan waktu' AFTER `LinkStorePatidana`;
+
+
+-251021
+add master_sequence.sql
+
+DELIMITER $$
+CREATE PROCEDURE `getMasterSequence`(IN `param_idsubweb` INT(255), IN `param_idkegiatan` INT(255), IN `param_kode` VARCHAR(255))
+    NO SQL
+BEGIN
+DECLARE kodepemesanan VARCHAR(255);
+DECLARE currentCount INT(255);
+
+SELECT IFNULL(SUM(last_number), 0) INTO currentCount FROM master_sequence WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode) FOR UPDATE;
+
+IF currentCount = 0 THEN
+	INSERT INTO master_sequence (idsubweb, idkegiatan, kode, last_number) VALUES (param_idsubweb, param_idkegiatan, UPPER(param_kode), 1);
+    SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(1, 3, '0'));
+ELSE
+    UPDATE master_sequence SET last_number = currentCount + 1 WHERE idsubweb = param_idsubweb AND idkegiatan = param_idkegiatan AND kode = UPPER(param_kode);
+    SET kodepemesanan = CONCAT(UPPER(param_kode), LPAD(currentCount + 1, 3, '0'));
+END IF;
+ 
+SELECT kodepemesanan;
+END$$
+DELIMITER ;
+
+-221021
+====update NoTlp 0 to 62====
+UPDATE user
+SET NoTlp = CONCAT(
+                    REPLACE(LEFT(NoTlp,1), '0', '62'),      
+                    SUBSTRING(NoTlp, 2, CHAR_LENGTH(NoTlp))
+                  );
+ALTER TABLE `user` ADD `IdCountry` INT(255) NOT NULL DEFAULT '100' COMMENT 'default 100 = indonesia' AFTER `NoTlp`;
+====update NoTlp 0 to 62====
+
+-211021
+add countries.sql
+
+-191021
+UPDATE `panel_shapes` SET `width_tv` = '6', `height_tv` = '4' WHERE `panel_shapes`.`Id` = 1; 
+UPDATE `panel_shapes` SET `width_tv` = '1.2', `height_tv` = '4' WHERE `panel_shapes`.`Id` = 2; 
+UPDATE `panel_shapes` SET `width_tv` = '6', `height_tv` = '1.3' WHERE `panel_shapes`.`Id` = 8; 
+UPDATE `panel_shapes` SET `width_tv` = '1.2', `height_tv` = '1.3' WHERE `panel_shapes`.`Id` = 9;
+
+-171021
+UPDATE `panel_shapes` SET `width_tv` = '4.5', `height_tv` = '3' WHERE `panel_shapes`.`Id` = 1; 
+UPDATE `panel_shapes` SET `width_tv` = '1.3', `height_tv` = '3' WHERE `panel_shapes`.`Id` = 2; 
+UPDATE `panel_shapes` SET `width_tv` = '4.5' WHERE `panel_shapes`.`Id` = 8; 
+UPDATE `panel_shapes` SET `width_tv` = '1.3' WHERE `panel_shapes`.`Id` = 9;
+
+-151021
+//preview tv - env production
+DROP PROCEDURE `getKehadiranAcara`;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getKehadiranAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), OUT `TotalL` INT(255), OUT `DipesanL` INT(255), OUT `HadirL` INT(255), OUT `TotalP` INT(255), OUT `HadirP` INT(255), OUT `DipesanP` INT(255)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN
+DECLARE NamaKegiatan VARCHAR(255);
+
+SET TotalL = 0;
+SET DipesanL = 0;
+SET HadirL = 0;
+SET TotalP = 0;
+SET DipesanP = 0;
+SET HadirP = 0;
+
+-- total kapasitas
+SELECT MaxL INTO TotalL FROM bk_ruangan WHERE IdSubweb = param_idsubweb;
+SELECT MaxP INTO TotalP FROM bk_ruangan WHERE IdSubweb = param_idsubweb;
+
+-- total booking
+-- laki - laki
+SELECT COUNT(ba.Id) INTO DipesanL
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'L';
+    
+-- perempuan
+SELECT COUNT(ba.Id) INTO DipesanP
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'P';
+
+-- total hadir
+-- laki - laki
+SELECT COUNT(ua.IdKegiatan) INTO HadirL FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'L'
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = param_idkegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+-- perempuan
+SELECT COUNT(ua.IdKegiatan) INTO HadirP FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'P'
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = ua.IdKegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+SELECT Judul INTO NamaKegiatan FROM kalender_kegiatan WHERE Id = param_idkegiatan;
+
+SELECT NamaKegiatan, TotalL, DipesanL, HadirL, TotalP, DipesanP, HadirP;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getStockPaketAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255))
+    NO SQL
+BEGIN
+DECLARE NamaKegiatan VARCHAR(255);
+DECLARE StockOrder VARCHAR(255);
+DECLARE StockReady VARCHAR(255);
+DECLARE Stock VARCHAR(255);
+
+SELECT 
+	kk.Judul AS NamaKegiatan,
+    bo3.*, 
+    IFNULL((SELECT (SELECT SUM(bo2.Quantity) 
+                FROM bk_order bo2 
+                WHERE bo2.RecordStatus != 'D' AND bo2.IdProduct = bo.IdProduct ) Total 
+        FROM bk_order bo WHERE bo.RecordStatus != 'D' AND bo.IdProduct = bo3.Id GROUP BY bo.IdProduct
+    ), 0) AS StockOrder,
+    (
+        GREATEST(
+            bo3.Stock - 
+            IFNULL((SELECT (SELECT SUM(bo2.Quantity) 
+                    FROM bk_order bo2 
+                    WHERE bo2.RecordStatus != 'D' AND bo2.IdProduct = bo.IdProduct ) Total 
+            FROM bk_order bo WHERE bo.RecordStatus != 'D' AND bo.IdProduct = bo3.Id GROUP BY bo.IdProduct
+            ), 0)
+        , 0)
+    ) AS StockReady
+FROM bk_product bo3 
+LEFT JOIN kalender_kegiatan kk ON kk.Id = param_idkegiatan
+WHERE bo3.IdSubweb = param_idsubweb AND bo3.IdKegiatan IS NULL;
+END$$
+DELIMITER ;
+
+DROP PROCEDURE `getStockPaketAcara`;
+DELIMITER $$
+CREATE PROCEDURE `getStockPaketAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+DECLARE NamaKegiatan VARCHAR(255);
+DECLARE StockOrder VARCHAR(255);
+DECLARE StockReady VARCHAR(255);
+DECLARE Stock VARCHAR(255);
+SELECT 
+    bo3.*, 
+    IFNULL((SELECT (SELECT SUM(bo2.Quantity) 
+                FROM bk_order bo2 
+                WHERE bo2.RecordStatus != 'D' AND bo2.IdProduct = bo.IdProduct ) Total 
+        FROM bk_order bo WHERE bo.RecordStatus != 'D' AND bo.IdProduct = bo3.Id GROUP BY bo.IdProduct
+    ), 0) AS StockOrder,
+    (
+        GREATEST(
+            bo3.Stock - 
+            IFNULL((SELECT (SELECT SUM(bo2.Quantity) 
+                    FROM bk_order bo2 
+                    WHERE bo2.RecordStatus != 'D' AND bo2.IdProduct = bo.IdProduct ) Total 
+            FROM bk_order bo WHERE bo.RecordStatus != 'D' AND bo.IdProduct = bo3.Id GROUP BY bo.IdProduct
+            ), 0)
+        , 0)
+    ) AS StockReady
+FROM bk_product bo3 
+WHERE bo3.IdSubweb = param_idsubweb;
+END$$
+DELIMITER ;
+//preview tv
+
+-141021
+DROP PROCEDURE `CheckPembayaran`;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `CheckPembayaran`(IN `param_kodepemesanan` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255)) DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+    CASE 
+        WHEN SUM(a.Total) <= IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0)
+            THEN 1
+        ELSE 0
+    END AS Status,
+    (
+		SELECT StatusKonfirmasi FROM booking_acara WHERE TipePendaftar = 'Pendaftar' AND KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan
+    ) AS StatusKonfirmasi,
+ 	a.Total,
+    IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) AS Bayar,
+ 	SUM(a.Total) - IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) Sisa
+FROM 
+(
+    SELECT 
+        bo.KodePemesanan, IFNULL(bp.Harga, bo.NominalDonasi) Harga, bo.Quantity, IFNULL(bp.Harga, bo.NominalDonasi) * bo.Quantity AS Total 
+        FROM bk_order bo 
+    LEFT JOIN bk_product bp ON bp.Id = bo.IdProduct AND bp.IdKegiatan = param_idkegiatan
+    WHERE bo.RecordStatus != 'D' AND bo.KodePemesanan = param_kodepemesanan
+) a
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getKehadiranAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), OUT `TotalL` INT(255), OUT `DipesanL` INT(255), OUT `HadirL` INT(255), OUT `TotalP` INT(255), OUT `HadirP` INT(255), OUT `DipesanP` INT(255)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+SET TotalL = 0;
+SET DipesanL = 0;
+SET HadirL = 0;
+SET TotalP = 0;
+SET DipesanP = 0;
+SET HadirP = 0;
+
+-- total kapasitas
+SELECT MaxL INTO TotalL FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+SELECT MaxP INTO TotalP FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+
+-- total booking
+-- laki - laki
+SELECT COUNT(ba.Id) INTO DipesanL
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'L' AND
+    ba.CountedKapasitas = 1;
+    
+-- perempuan
+SELECT COUNT(ba.Id) INTO DipesanP
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'P' AND
+    ba.CountedKapasitas = 1;
+
+-- total hadir
+-- laki - laki
+SELECT COUNT(ua.IdKegiatan) INTO HadirL FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'L' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = param_idkegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+-- perempuan
+SELECT COUNT(ua.IdKegiatan) INTO HadirP FROM (
+    SELECT DISTINCT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'P' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = ua.IdKegiatan AND ua.IdKegiatan = param_idkegiatan;
+
+SELECT TotalL, DipesanL, HadirL, TotalP, DipesanP, HadirP;
+
+END$$
+DELIMITER ;
+
+-131021
+ALTER TABLE `bk_product` ADD UNIQUE( `IdKegiatan`, `NamaBarang`);
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addProductKathina`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), IN `param_path` VARCHAR(255))
+    NO SQL
+BEGIN
+INSERT 
+	INTO bk_product(IdSubweb, IdKegiatan, NamaBarang, Harga, Stock, Image) 
+	VALUES(param_idsubweb, param_idkegiatan, 'Paket Jubah', '400000', '100', CONCAT(param_path,'/assets/img/product/paket_jubah.jpeg'))
+ON DUPLICATE KEY
+    UPDATE Stock = '100';
+INSERT 
+	INTO bk_product(IdSubweb, IdKegiatan, NamaBarang, Harga, Stock, Image) 
+	VALUES(param_idsubweb, param_idkegiatan, 'Paket Obat 1', '100000', '100', CONCAT(param_path,'/assets/img/product/paket_obat 1.jpeg'))
+ON DUPLICATE KEY
+    UPDATE Stock = '100';
+INSERT 
+	INTO bk_product(IdSubweb, IdKegiatan, NamaBarang, Harga, Stock, Image) 
+	VALUES(param_idsubweb, param_idkegiatan, 'Paket Mandi', '200000', '50', CONCAT(param_path,'/assets/img/product/paket_mandi.jpeg'))
+ON DUPLICATE KEY
+    UPDATE Stock = '50';
+INSERT 
+	INTO bk_product(IdSubweb, IdKegiatan, NamaBarang, Harga, Stock, Image) 
+	VALUES(param_idsubweb, param_idkegiatan, 'Paket Obat 2', '100000', '250', CONCAT(param_path,'/assets/img/product/paket_obat 2.jpeg'))
+ON DUPLICATE KEY
+    UPDATE Stock = '250';
+INSERT 
+	INTO bk_product(IdSubweb, IdKegiatan, NamaBarang, Harga, Stock, Image) 
+	VALUES(param_idsubweb, param_idkegiatan, 'Paket Bowl', '500000', '500', CONCAT(param_path,'/assets/img/product/paket_bowl.jpeg'))
+ON DUPLICATE KEY
+    UPDATE Stock = '500';
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getKehadiranAcara`(IN `param_idsubweb` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255), OUT `TotalL` INT(255), OUT `DipesanL` INT(255), OUT `HadirL` INT(255), OUT `TotalP` INT(255), OUT `HadirP` INT(255), OUT `DipesanP` INT(255)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER 
+BEGIN
+SET TotalL = 0;
+SET DipesanL = 0;
+SET HadirL = 0;
+SET TotalP = 0;
+SET DipesanP = 0;
+SET HadirP = 0;
+
+-- total kapasitas
+SELECT MaxL INTO TotalL FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+SELECT MaxP INTO TotalP FROM bk_ruangan WHERE IdKegiatan = param_idkegiatan;
+
+-- total booking
+-- laki - laki
+SELECT COUNT(ba.Id) INTO DipesanL
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'L' AND
+    ba.CountedKapasitas = 1;
+    
+-- perempuan
+SELECT COUNT(ba.Id) INTO DipesanL
+    FROM booking_acara ba
+WHERE 
+    ba.JenisKelamin IS NOT NULL AND 
+    ba.Kehadiran = 'HP' AND 
+    ba.StatusKonfirmasi != 'D' AND 
+    ba.RecordStatus != 'D' AND
+    ba.IdSubweb = param_idsubweb AND 
+    ba.IdKegiatan = param_idkegiatan AND 
+    ba.JenisKelamin = 'P' AND
+    ba.CountedKapasitas = 1;
+
+-- total hadir
+-- laki - laki
+SELECT COUNT(ua.IdKegiatan) INTO HadirL FROM (
+    SELECT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'L' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = ua.IdKegiatan;
+
+-- perempuan
+SELECT COUNT(ua.IdKegiatan) INTO HadirP FROM (
+    SELECT IdUser, IdKegiatan
+        FROM booking_acara ba
+        WHERE 
+            ba.JenisKelamin IS NOT NULL AND 
+            ba.Kehadiran = 'HP' AND 
+            ba.StatusKonfirmasi != 'D' AND 
+            ba.RecordStatus != 'D' AND
+            ba.IdSubweb = param_idsubweb AND 
+            ba.IdKegiatan = param_idkegiatan AND 
+            ba.JenisKelamin = 'P' AND
+            ba.CountedKapasitas = 1
+    ) baa
+INNER JOIN user_activity ua ON baa.IdUser = ua.IdUser AND baa.IdKegiatan = ua.IdKegiatan;
+END$$
+DELIMITER ;
+
+ALTER TABLE `chatbot_session_detail` ADD `IdPesan` VARCHAR(25) NULL DEFAULT NULL AFTER `IdTemp`;
+
+-121021
+UPDATE `admin_menu` SET `MenuName` = 'Acara' WHERE `admin_menu`.`Id` = 28000;
+UPDATE `admin_menu` SET `MenuName` = 'Input Order', `Path` = '/input-order' WHERE `admin_menu`.`Id` = 28200;
+
+-081021
+ALTER TABLE `booking_acara`  ADD `CountedKapasitas` VARCHAR(2) NOT NULL DEFAULT '1' COMMENT 'status user terhitung kapasitas (1/0)'  AFTER `VIP`;
+
+-071021
+ALTER TABLE `chatbot_session_detail` CHANGE `IdTemp` `IdTemp` VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL;
+DROP PROCEDURE `autoAddUserVIP`;
+DELIMITER $$
+CREATE PROCEDURE `autoAddUserVIP`(IN `param_username` VARCHAR(255), IN `param_password` VARCHAR(255), IN `param_otp` VARCHAR(255), IN `param_notlp` VARCHAR(255), IN `param_jeniskelamin` VARCHAR(255), IN `param_createdby` VARCHAR(255)) DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN
+INSERT INTO user(Username, Password, OTP, NoTlp, JenisKelamin, CreatedBy) VALUES (param_username, param_password, param_otp, param_notlp, param_jeniskelamin, param_createdby);
+SELECT LAST_INSERT_ID() Id;
+END$$
+DELIMITER ;
+
+-061021
+//booking minggu
+ALTER TABLE `booking_acara` ADD `TypeForm` VARCHAR(255) NOT NULL DEFAULT 'K' COMMENT 'Kathina/Pujabakti (K/P)' AFTER `IdUser`;
+
+-041021
+DROP PROCEDURE `CheckPembayaran`;
+DELIMITER $$
+CREATE PROCEDURE `CheckPembayaran`(IN `param_kodepemesanan` VARCHAR(255), IN `param_idkegiatan` VARCHAR(255)) DETERMINISTIC NO SQL SQL SECURITY DEFINER SELECT 
+    CASE 
+        WHEN SUM(a.Total) <= IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0)
+            THEN 1
+        ELSE 0
+    END AS Status,
+ 	a.Total,
+    IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) AS Bayar,
+ 	SUM(a.Total) - IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan AND IdKegiatan = param_idkegiatan), 0) Sisa
+FROM 
+(
+    SELECT bo.KodePemesanan, bp.Harga, bo.Quantity, IFNULL(bp.Harga, bo.NominalDonasi) * bo.Quantity AS Total FROM bk_order bo 
+    LEFT JOIN bk_product bp ON bp.Id = bo.IdProduct 
+    WHERE bo.KodePemesanan = param_kodepemesanan AND bp.IdKegiatan = param_idkegiatan
+) a$$
+DELIMITER ;
+ALTER TABLE `booking_acara`  ADD `RecordStatus` VARCHAR(255) NOT NULL DEFAULT 'N' COMMENT 'N=\'new\', D=\'delete\''  AFTER `Cetak`;
+ALTER TABLE `bk_order`  ADD `RecordStatus` VARCHAR(255) NOT NULL DEFAULT 'N' COMMENT 'N=\'add\', D=\'delete\''  AFTER `Quantity`;
+ALTER TABLE `bk_log_pembayaran`  ADD `RecordStatus` VARCHAR(255) NOT NULL DEFAULT 'N' COMMENT 'N=\'add\', D=\'delete\''  AFTER `Catatan`;
+ALTER TABLE `bk_bukti_pembayaran`  ADD `RecordStatus` VARCHAR(255) NOT NULL DEFAULT 'N' COMMENT 'N=\'add\',D=\'delete\''  AFTER `Image`;
+
+- 011021
+//booking minggu
+ALTER TABLE `bk_ruangan` ADD `IdKegiatan` INT(255) NULL AFTER `IdSubweb`;
+ALTER TABLE `bk_product` ADD `IdKegiatan` INT(255) NULL AFTER `IdSubweb`;
+ALTER TABLE `bk_log_pembayaran` ADD `IdKegiatan` INT(255) NULL AFTER `IdSubweb`;
+ALTER TABLE `bk_bukti_pembayaran` ADD `IdKegiatan` INT(255) NULL AFTER `IdSubweb`;
+ALTER TABLE `kalender_kegiatan` ADD `TypeForm` CHAR(1) NULL COMMENT 'kathina/pujabakti (K/P)' AFTER `KegiatanFisik`;
+ALTER TABLE `bk_ruangan` DROP INDEX `IdSubweb`;
+ALTER TABLE `bk_ruangan` ADD INDEX(`IdSubweb`);
+ALTER TABLE `bk_ruangan` ADD UNIQUE(`IdKegiatan`);
+
+-021021
+ALTER TABLE `chatbot_session_detail` ADD `TipePendaftar` VARCHAR(20) NULL DEFAULT NULL AFTER `Value`, ADD `IdTemp` VARCHAR(10) NULL DEFAULT NULL AFTER `TipePendaftar`;
+
+-300921
+add chatbot_session.sql
+add chatbot_session_detail.sql
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6300;
+
+- 270921
+UPDATE `admin_menu` SET `Id` = '28300' WHERE `admin_menu`.`Id` = 28200;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('28200', 'Input Order Kathina', '/input-order-kathina', '/admin', 'PAInputOrderKathina', NULL, '//localhost/dhammagrahaapi/assets/img/icons/seokguram.png', '0', '28000', '', 'Admin', '2021-09-27 11:08:47', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '28300', 'N', 'N', 'N', 'N', 'N', '', '2021-09-17 00:00:00', '', '0000-00-00 00:00:00');
+ALTER TABLE `booking_acara` ADD `VIP` CHAR(1) NULL DEFAULT '0' COMMENT '1/0' AFTER `Kehadiran`;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `autoAddUserVIP`(IN `param_username` VARCHAR(255), IN `param_password` VARCHAR(255), IN `param_otp` VARCHAR(255), IN `param_notlp` VARCHAR(255), IN `param_createdby` VARCHAR(255))
+    NO SQL
+    DETERMINISTIC
+BEGIN
+INSERT INTO user(Username, Password, OTP, NoTlp, CreatedBy) VALUES (param_username, param_password, param_otp, param_notlp, param_createdby);
+SELECT LAST_INSERT_ID() Id;
+END$$
+DELIMITER ;
+
+// cek pembayaran
+DELIMITER $$
+CREATE PROCEDURE `CheckPembayaran`(IN `param_kodepemesanan` VARCHAR(255))
+    NO SQL
+    DETERMINISTIC
+SELECT 
+    CASE 
+        WHEN SUM(a.Total) <= IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan), 0)
+            THEN 1
+        ELSE 0
+    END AS Status,
+ 	a.Total,
+    IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan), 0) AS Bayar,
+ 	SUM(a.Total) - IFNULL((SELECT SUM(Nominal) FROM `bk_bukti_pembayaran` WHERE KodePemesanan = param_kodepemesanan), 0) Sisa
+FROM 
+(
+    SELECT bo.KodePemesanan, bp.Harga, bo.Quantity, IFNULL(bp.Harga, bo.NominalDonasi) * bo.Quantity AS Total FROM bk_order bo 
+    LEFT JOIN bk_product bp ON bp.Id = bo.IdProduct 
+    WHERE bo.KodePemesanan = param_kodepemesanan
+) a$$
+DELIMITER ;
+
+-230921
+ALTER TABLE `bk_bukti_pembayaran` ADD INDEX(`KodePemesanan`);
+ALTER TABLE `bk_order` ADD INDEX(`KodePemesanan`);
+
+-220921
+ALTER TABLE `booking_acara` ADD `Cetak` INT(2) NULL DEFAULT NULL AFTER `KirimQR`;
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6000;
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6100;
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6200;
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8000; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8800; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8900
+
+ALTER TABLE `bk_order` ADD INDEX(`IdProduct`);
+
+ALTER TABLE `bk_order` CHANGE `NominalDonasi` `NominalDonasi` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+
+- 180921
+ALTER TABLE `booking_acara` ADD `KirimQR` VARCHAR(3) NULL DEFAULT NULL AFTER `StatusKonfirmasi`;
+
+- 170921
+UPDATE `admin_menu` SET `HasDropDownMenu` = '1' WHERE `admin_menu`.`Id` = 28000;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('28100', 'Administrasi', '/kathina', '/admin', 'PAKathina', NULL, '//localhost/dhammagrahaapi/assets/img/icons/seokguram.png', '0', '28000', '', 'Admin', '2021-09-17 16:02:54', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '28100', 'N', 'N', 'N', 'N', 'N', '', CURRENT_DATE(), '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('28200', 'Pindai QR Code', '/scanqr-kathina', '/admin', 'PAScanQrKathina', NULL, '//localhost/dhammagrahaapi/assets/img/icons/seokguram.png', '0', '28000', '', 'Admin', '2021-09-17 16:02:54', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '28200', 'N', 'N', 'N', 'N', 'N', '', CURRENT_DATE(), '', '0000-00-00 00:00:00');
+
+-160921
+add bk_bukti_pembayaran.sql
+ALTER TABLE `bk_order` ADD `NominalDonasi` VARCHAR(255) NOT NULL AFTER `IdProduct`;
+
+-100921
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('28000', 'Acara Kathina', '/kathina', '/admin', 'PAKathina', NULL, '//localhost/dhammagrahaapi/assets/img/icons/seokguram.png', '0', NULL, '', 'Admin', '2021-05-08 08:24:37', '', '0000-00-00 00:00:00');
+INSE
+RT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '28000', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+-130921
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `autosubcribe`(IN `param_idUser` INT(255), IN `param_idSubweb` INT(255))
+    NO SQL
+IF(EXISTS(SELECT * FROM role_user WHERE IdUser = param_idUser AND IdSubWeb = param_idSubweb AND KodeRole = 'AM'))
+THEN
+	SELECT * FROM user_subscribe WHERE idUser = param_idUser AND idSubWeb = param_idSubweb;
+ELSE
+  INSERT INTO user_subscribe(idUser, idSubWeb) VALUES (param_idUser, param_idSubweb);
+END IF$$
+DELIMITER ;
+
+add bk_product.sql, booking_acara.sql, bk_order.sql
+INSERT INTO `bk_product` (`Id`, `IdSubweb`, `NamaBarang`, `Harga`, `Stock`, `Image`, `CreatedAt`, `UpdatedAt`) VALUES 
+(NULL, '367', 'Kucing 1', '200000', '20', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/1.jpg', current_timestamp(), NULL),
+(NULL, '367', 'Kucing 2', '500000', '30', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/2.png', current_timestamp(), NULL),
+(NULL, '367', 'Kucing 3', '320000', '34', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/3.jpg', current_timestamp(), NULL),
+(NULL, '367', 'Kucing 4', '700000', '45', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/4.jpg', current_timestamp(), NULL),
+(NULL, '367', 'Kucing 5', '200000', '20', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/5.jpg', current_timestamp(), NULL),
+(NULL, '367', 'Kucing 6', '600000', '20', '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/product/6.jpg', current_timestamp(), NULL);
+
+-090921
+add user_akun_store.sql
+ALTER TABLE `sub_web` ADD `WaOrg` VARCHAR(100) NULL DEFAULT NULL AFTER `IdGrupWA`;
+ALTER TABLE `sub_web` ADD `IdMerchant` INT(10) NULL DEFAULT NULL AFTER `IdStore`;
+
+-070921
+add admin_wa.sql
+
+-060921
+ALTER TABLE `sub_web` ADD `IdStore` INT(10) NULL DEFAULT NULL AFTER `FontStyleBanner`;
+
+-260821
+ALTER TABLE `pagestyle_store` ADD `CardStoreName` VARCHAR(150) NULL DEFAULT NULL AFTER `IdContentTamplateSub`;
+
+-060821
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = \'AM\' AND `role_menu`.`IdMenu` = 24000"
+
+-030821
+ALTER TABLE `kategori_sub_web` ADD INDEX(`IdTemplateKategori`);
+ALTER TABLE `kategori_sub_web` ADD INDEX(`IdSub`);
+ALTER TABLE `sub_web` ADD INDEX( `Id`, `Status`);
+
+-260721
+ALTER TABLE `detail_acara_formulir` CHANGE `FormId` `FormId` VARCHAR(100) NOT NULL;
+ALTER TABLE `patidana` ADD `OrderId` VARCHAR(20) NULL DEFAULT NULL AFTER `Payment`;
+
+-090721
+ALTER TABLE `detail_acara_formulir` CHANGE `Id` `Id` VARCHAR(100) NOT NULL;
+ALTER TABLE `detail_acara_formulir` DROP PRIMARY KEY;
+ALTER TABLE detail_acara_formulir
+ADD CONSTRAINT PK PRIMARY KEY (Id,LevelStatus)
+
+-070721
+add log_acara.sql
+
+-060721
+ALTER TABLE `patidana` ADD `NamaPemesan` VARCHAR(100) NULL DEFAULT NULL AFTER `IdUser`;
+
+-050721
+add detail_acara_formulir.sql
+UPDATE `admin_menu` SET `IconPng` = '//guguskarangmekar.com/dhammawangsaDevAPI/assets/img/icons/cek.png' WHERE `admin_menu`.`Id` = 24000;
+
+-020721
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+('AM', 26000, 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 01:31:20', '', '0000-00-00 00:00:00'),
+('AM', 27000, 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 01:31:20', '', '0000-00-00 00:00:00');
+ALTER TABLE `acara` CHANGE `LevelStatus` `LevelStatus` INT(10) NOT NULL COMMENT '1=perencanaan\r\n2=persetujuan\r\n3=persiapan\r\n4=pelaksanaan\r\n5=evaluasi';
+ALTER TABLE `acara` CHANGE `Status` `Status` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Perencanaan' COMMENT 'Draft, Perencanaan, Persetujuan, Perbaikan, Penolakan, Koreksi, Persiapan, Pelaksanaan ';
+
+-300621
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(27000, 'Patidana', '/patidana', '/admin', 'PAPatidana', NULL, '//localhost/dhammagrahaapi/assets/img/icons/seokguram.png', '0', NULL, '', 'Admin', '2021-05-08 01:24:37', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(26000, 'Template PDF', '/template-pdf', '/admin', 'PATemplatePDF', NULL, '//localhost/dhammagrahaapi/assets/img/icons/pdf10.png', '0', NULL, '', 'Admin', '2021-04-16 07:28:22', '', '0000-00-00 00:00:00');
+ALTER TABLE `patidana_nama` CHANGE `Nama` `Nama` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+-250621
+ALTER TABLE `detail_acara_master_ruangan` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+ALTER TABLE `detail_acara_template_ruangan` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+ALTER TABLE `acara` CHANGE `LevelStatus` `LevelStatus` INT(10) NOT NULL COMMENT '0=Draf\r\n1=perencanaan\r\n2=persetujuan\r\n3=persiapan\r\n4=pelaksanaan\r\n5=evaluasi';
+ALTER TABLE `acara` CHANGE `Status` `Status` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Perencanaan' COMMENT 'Perencanaan, Persetujuan, Perbaikan, Penolakan, Koreksi, Persiapan, Pelaksanaan ';
+
+ALTER TABLE detail_acara_master_ruangan DROP PRIMARY KEY;
+ALTER TABLE detail_acara_master_ruangan
+ADD CONSTRAINT PK PRIMARY KEY (Id,LevelStatus)
+
+-240621
+add flow_persetujuan_acara.sql, status_acara.sql
+ALTER TABLE `status_acara` ADD `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Status`, ADD `UpdatedAt` TIMESTAMP NULL DEFAULT NULL AFTER `CreatedAt`;
+
+
+-230621
+ALTER TABLE `donasi_acara` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Amount`;
+ALTER TABLE `detail_acara_master_notif` ADD `LevelStatus` INT NOT NULL DEFAULT '1' AFTER `IdTipePenerima`;
+ALTER TABLE `detail_acara_content_notif` ADD `LevelStatus` INT NOT NULL DEFAULT '1' AFTER `DetailNotif`;
+
+ALTER TABLE `donasi_acara` DROP PRIMARY KEY, ADD PRIMARY KEY(`Id`,`LevelStatus`);
+ALTER TABLE `detail_acara_master_notif` DROP PRIMARY KEY, ADD PRIMARY KEY(`Id`,`LevelStatus`);
+ALTER TABLE `detail_acara_content_notif` DROP PRIMARY KEY, ADD PRIMARY KEY(`Id`,`LevelStatus`);
+ALTER TABLE `detail_acara_template_ruangan` DROP PRIMARY KEY, ADD PRIMARY KEY(`Id`,`LevelStatus`);
+
+-100621
+ALTER TABLE `detail_acara_template_perlengkapan` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_perlengkapan` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_dokumentasi` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_dokumentasi` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_transportasi` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_transportasi` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+
+-170621
+ALTER TABLE `list_template_acara` DROP INDEX `IdAcara_2`;
+ALTER TABLE `list_template_acara` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' COMMENT '1=perencanaan, 2=persetujuan, 3=persiapan, 4=pelaksanaan' AFTER `RangeDay`;
+ALTER TABLE `list_template_acara`
+  DROP PRIMARY KEY,
+   ADD PRIMARY KEY(
+     `Id`,
+     `LevelStatus`);
+ALTER TABLE `catatan_penolakan_acara` ADD `TipeTemplate` VARCHAR(50) NULL DEFAULT NULL AFTER `IdDetailTemplate`;
+
+-160621
+ALTER TABLE `detail_acara_master_komunikasi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_komunikasi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Biaya`;
+
+-140621
+ALTER TABLE `detail_acara_master_konsumsi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_konsumsi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Biaya`;
+ALTER TABLE `detail_acara_master_dekorasi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Biaya`;
+ALTER TABLE `detail_acara_template_dekorasi` ADD `RangeDay` VARCHAR(100) NOT NULL AFTER `Biaya`;
+
+-120621
+ALTER TABLE `detail_acara_master_notif` ADD `IdTemplatePetugas` VARCHAR(255) NOT NULL AFTER `IdTemplateNotif`;
+ALTER TABLE `detail_acara_master_notif`  ADD `RangeDay` VARCHAR(255) NOT NULL  AFTER `IdTipePenerima`;
+ALTER TABLE `detail_acara_content_notif`  ADD `IdTemplatePetugas` VARCHAR(255) NOT NULL  AFTER `IdTemplateNotif`;
+ALTER TABLE `detail_acara_content_notif`  ADD `RangeDay` VARCHAR(255) NOT NULL  AFTER `DetailNotif`;
+
+-110621
+ALTER TABLE `list_template_acara` ADD UNIQUE( `IdAcara`, `NamaTemplate`, `RangeDay`);
+ALTER TABLE `list_template_acara` ADD `IdTemplate` VARCHAR(255) NOT NULL AFTER `IdAcara`;
+ALTER TABLE `list_template_acara` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+
+-090621
+ALTER TABLE `detail_acara_template_petugas` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_petugas` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+
+-070621
+ALTER TABLE `dokumen_master` ADD `image_thumbnail` VARCHAR(225) NOT NULL DEFAULT '' AFTER `Thumbnail`;
+ALTER TABLE `template_dekorasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `template_petugas` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `template_konsumsi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `template_komunikasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `ms_dekorasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `ms_petugas` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `ms_alat_makan` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `ms_makanan` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `ms_komunikasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `detail_master_komunikasi` ADD INDEX(`IdMaster`);
+ALTER TABLE `detail_master_komunikasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `detail_template_dekorasi` ADD INDEX(`IdTemplateDekorasi`);
+ALTER TABLE `detail_template_dekorasi` ADD INDEX(`IdDekorasi`);
+ALTER TABLE `detail_template_petugas` ADD INDEX(`IdTemplatePetugas`);
+ALTER TABLE `detail_template_petugas` ADD INDEX(`IdPetugas`);
+ALTER TABLE `detail_template_konsumsi` ADD INDEX(`IdTemplateKonsumsi`);
+ALTER TABLE `detail_template_konsumsi` ADD INDEX(`IdMakanan`);
+ALTER TABLE `detail_template_konsumsi` ADD INDEX(`IdAlatMakan`);
+ALTER TABLE `detail_template_komunikasi` ADD INDEX(`IdTemplateKomunikasi`);
+ALTER TABLE `detail_template_komunikasi` ADD INDEX(`IdKomunikasi`);
+
+ALTER TABLE `donasi_acara` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Amount`;
+
+-040621
+ALTER TABLE `acara` ADD `CreatedBy` INT NULL DEFAULT NULL AFTER `CatatanPenolakan`;
+
+-030621
+ALTER TABLE `schedule_acara` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' COMMENT '1=acara\r\n2=persetujuan\r\n3=persiapan\r\n4=pelaksanaan' AFTER `Tanggal`;
+ALTER TABLE `detail_acara_master_transportasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_transportasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `detail_acara_template_perlengkapan` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `detail_acara_master_perlengkapan` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_dokumentasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_dokumentasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_ruangan` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_ruangan` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_komunikasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `detail_acara_master_komunikasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_konsumsi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_konsumsi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `detail_acara_master_petugas` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_template_petugas` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_dekorasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `detail_acara_template_dekorasi` ADD `LevelStatus` INT(10) NOT NULL DEFAULT '1' AFTER `Biaya`;
+
+ALTER TABLE `fitur_template_persetujuan` ADD `IdSubWeb` INT(10) NULL DEFAULT NULL AFTER `IdTemplate`;
+ALTER TABLE `detail_acara_master_dekorasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_petugas` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_konsumsi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_komunikasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_transportasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_perlengkapan` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_master_dokumentasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_dekorasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_petugas` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_konsumsi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_komunikasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_transportasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_perlengkapan` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+ALTER TABLE `detail_acara_template_dokumentasi` DROP PRIMARY KEY, ADD PRIMARY KEY( `Id`, `LevelStatus`);
+
+-020621
+add list_template_acara.sql
+ALTER TABLE `biaya` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `LevelStatus`;
+ALTER TABLE `detail_acara_template_ruangan` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `detail_acara_master_ruangan` ADD `RangeDay` VARCHAR(255) NOT NULL AFTER `Catatan`;
+ALTER TABLE `acara` CHANGE `Tanggal` `TanggalStart` DATETIME NOT NULL;
+ALTER TABLE `acara` CHANGE `TanggalStart` `TanggalStart` DATETIME NULL DEFAULT NULL;
+ALTER TABLE `acara` ADD `TanggalEnd` DATETIME NULL DEFAULT NULL AFTER `TanggalStart`;
+
+-310521
+ALTER TABLE `acara` ADD INDEX(`Id`);
+ALTER TABLE `acara` ADD INDEX(`LevelStatus`);
+ALTER TABLE `ms_lantai` ADD INDEX(`IdGedung`);
+ALTER TABLE `ms_ruangan` ADD INDEX(`IdSubweb`);
+ALTER TABLE `template_ruangan` ADD INDEX(`IdSubweb`);
+ALTER TABLE `detail_template_ruangan` ADD INDEX(`IdTemplateRuangan`);
+ALTER TABLE `ms_petugas` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `template_petugas` ADD INDEX(`IdSubWeb`);
+
+-290521
+ALTER TABLE `acara` ADD INDEX(`LevelStatus`);
+ALTER TABLE `acara` ADD INDEX(`Id`);
+ALTER TABLE `detail_acara_template_ruangan` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+
+-270521
+ALTER TABLE `detail_template_transportasi` CHANGE `Catatan` `Catatan` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
+ALTER TABLE `detail_template_perlengkapan` CHANGE `Catatan` `Catatan` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
+ALTER TABLE `detail_template_dokumentasi` CHANGE `Catatan` `Catatan` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '';
+ALTER TABLE `detail_template_content_notif` ADD INDEX(`IdTemplateNotif`);
+ALTER TABLE `detail_template_content_notif` ADD INDEX(`IdPetugas`);
+ALTER TABLE `detail_template_ms_notif` ADD INDEX(`IdSubweb`);
+ALTER TABLE `detail_template_ms_notif` ADD INDEX(`IdTemplateNotif`);
+ALTER TABLE `dokumen_master` ADD INDEX(`IdMaster`);
+ALTER TABLE `dokumen_master` ADD INDEX(`Thumbnail`);
+ALTER TABLE `biaya` ADD INDEX(`IdMaster`);
+ALTER TABLE `content_template_sub` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `role_user` CHANGE `UpdatedAt` `UpdatedAt` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `role_user` ADD INDEX(`IdUser`);
+ALTER TABLE `admin_menu` ADD INDEX(`MenuName`);
+ALTER TABLE `pagestyle_orderlist` ADD INDEX(`IdContentTamplateSub`);
+ALTER TABLE `ms_notif` ADD INDEX(`IdSubweb`);
+ALTER TABLE `ms_notif` ADD INDEX(`IdTipePenerima`);
+ALTER TABLE `template_komunikasi` ADD INDEX(`IdSubWeb`);
+ALTER TABLE `detail_template_komunikasi` ADD INDEX(`IdTemplateKomunikasi`);
+ALTER TABLE `detail_master_komunikasi` ADD INDEX(`IdMaster`);
+-260521
+add detail_acara_master_komunikasi.sql, detail_acara_template_komunikasi.sql
+
+-250521
+ALTER TABLE `kalender_kegiatan` ADD `IdPending` INT(11) NULL DEFAULT NULL AFTER `link`, ADD `StatusPending` CHAR(1) NULL DEFAULT NULL AFTER `IdPending`;
+UPDATE `role_menu` SET `p_create` = 'N', `p_edit` = 'N', `p_delete` = 'N', `p_active` = 'N' WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 5000;
+ALTER TABLE `patidana_akses_print` ADD `Catatan` TEXT NULL DEFAULT NULL AFTER `Status`;
+ALTER TABLE `patidana_akses_print` ADD `UpdatedAt` TIMESTAMP NULL DEFAULT NULL AFTER `CreatedAt`;
+
+-240521
+ALTER TABLE `detail_template_perlengkapan` ADD `Catatan` LONGTEXT NOT NULL AFTER `Jumlah`;
+ALTER TABLE `detail_template_transportasi` ADD `Catatan` LONGTEXT NOT NULL AFTER `CreatedAt`;
+
+-200521
+ALTER TABLE `detail_template_dokumentasi` ADD `Catatan` LONGTEXT NOT NULL AFTER `IdDokumentasi`;
+add detail_acara_template_dokumentasi.sql, detail_acara_master_dokumentasi.sql
+
+-180521
+add detail_acara_template_transportasi.sql, detail_acara_master_transportasi.sql
+ALTER TABLE `detail_acara_template_transportasi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_transportasi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_template_transportasi` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_transportasi` ADD INDEX (`IdSubweb`);
+
+-160521
+ALTER TABLE `detail_acara_template_ruangan` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_template_petugas` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_template_perlengkapan` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_template_dekorasi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_template_konsumsi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_ruangan` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_petugas` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_perlengkapan` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_notif` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_konsumsi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_dekorasi` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_master_notif` ADD INDEX (`IdAcara`);
+ALTER TABLE `detail_acara_content_notif` ADD INDEX (`IdAcara`);
+ALTER TABLE `donasi_acara` ADD INDEX (`IdAcara`);
+
+ALTER TABLE `detail_acara_template_ruangan` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_template_petugas` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_template_perlengkapan` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_template_dekorasi` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_template_konsumsi` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_ruangan` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_petugas` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_perlengkapan` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_notif` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_konsumsi` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_dekorasi` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_master_notif` ADD INDEX (`IdSubweb`);
+ALTER TABLE `detail_acara_content_notif` ADD INDEX (`IdSubweb`);
+ALTER TABLE `donasi_acara` ADD INDEX (`IdSubweb`);
+ALTER TABLE `acara` ADD INDEX (`IdSubweb`);
+ALTER TABLE `biaya` ADD INDEX(`LevelStatus`);
+ALTER TABLE `biaya` ADD INDEX(`IdSubweb`);
+
+add patidana.sql, patidana_akses_print.sql, patidana_flow.sql, patidana_foto.sql, patidana_nama.sql
+
+-110521
+DROP TABLE `stoodi`.`detail_acara_template_perlengkapan`
+add detail_acara_master_perlengkapan.sql, detail_acara_template_perlengkapan.sql
+
+-100521
+ALTER TABLE `ms_alat` ADD `Catatan` LONGTEXT NOT NULL AFTER `Id_tipe`;
+ALTER TABLE `ms_kendaraan` ADD `Catatan` LONGTEXT NOT NULL AFTER `Jumlah`;
+-190521
+UPDATE `panel_shapes` SET `width_tv` = '3' WHERE `panel_shapes`.`Id` = 3;
+UPDATE `panel_shapes` SET `width_tv` = '1.5' WHERE `panel_shapes`.`Id` = 4;
+
+-100521
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/television.svg' WHERE `admin_menu`.`Id` = 20000;
+
+-060521
+ALTER TABLE `donasi_acara` ADD `TypeDonasi` VARCHAR(20) NOT NULL DEFAULT 'Biaya' COMMENT 'Biaya/Barang' AFTER `UsernameDonasi`, ADD `IdBarangDonasi` VARCHAR(255) NOT NULL AFTER `TypeDonasi`, ADD `NamaBarang` INT NOT NULL AFTER `IdBarangDonasi`;
+ALTER TABLE `donasi_acara` CHANGE `NamaBarang` `NamaBarangDonasi` VARCHAR(255) NOT NULL;
+
+-040521
+add detail_acara_template_konsumsi.sql, detail_acara_master_konsumsi.sql
+
+-290421
+ALTER TABLE `biaya` CHANGE `Biaya` `Biaya` BIGINT(255) NOT NULL;
+add detail_acara_master_notif.sql, detail_acara_content_notif.sql
+
+-280421
+add area_konten_pdf.sql, form_template_pdf.sql
+ALTER TABLE `form_document` ADD `IdSubWeb` INT(10) NOT NULL AFTER `FormId`;
+ALTER TABLE `form_document` CHANGE `FormId` `FormId` VARCHAR(30) NOT NULL;
+ALTER TABLE `form_template_pdf` ADD `Ukuran` VARCHAR(30) NOT NULL AFTER `Thumbnail`;
+ALTER TABLE `form_template_pdf` CHANGE `FormId` `FormId` VARCHAR(30) NOT NULL;
+ALTER TABLE `form_template_pdf` ADD `IdSubWeb` INT(6) NOT NULL AFTER `FormId`;
+
+-250421
+ALTER TABLE `biaya` CHANGE `Biaya` `Biaya` BIGINT NOT NULL;
+ALTER TABLE `donasi_acara` CHANGE `Amount` `Amount` BIGINT NOT NULL;
+
+-240421
+ALTER TABLE `detail_template_petugas` ADD `Type` VARCHAR(100) NOT NULL AFTER `Jumlah`;
+ALTER TABLE `detail_acara_master_petugas` ADD `Type` VARCHAR(100) NOT NULL AFTER `Jumlah`;
+
+-220221
+ALTER TABLE `detail_acara_master_petugas` ADD `Catatan` LONGTEXT NOT NULL AFTER `Biaya`;
+ALTER TABLE `detail_template_petugas` CHANGE `Catatan` `Catatan` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+-190421
+add detail_acara_master_dekorasi.sql, detail_acara_template_dekorasi.sql
+ALTER TABLE `detail_acara_master_ruangan` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+
+-160420201
+ALTER TABLE `detail_template_konsumsi` ADD `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Catatan`;
+ALTER TABLE `detail_template_petugas` ADD `Catatan` TEXT NULL DEFAULT NULL AFTER `Jumlah`;
+
+-15042021
+ADD question_keyboard_khusus.sql
+
+-130321
+ALTER TABLE `biaya` ADD `Jumlah` INT(10) NULL DEFAULT '1' AFTER `Biaya`;
+ALTER TABLE `biaya` CHANGE `LevelStatus` `LevelStatus` INT(10) NOT NULL DEFAULT '1' COMMENT '1=master,\r\n2=template,\r\n3=perencanaan,\r\n4=persetujuan,\r\n5=persiapan,\r\n6=pelaksanaan';
+
+-070421
+ALTER TABLE `biaya`
+  DROP PRIMARY KEY,
+   ADD PRIMARY KEY(
+     `Id`,
+     `IdAcara`,
+     `IdTemplate`,
+     `LevelStatus`);
+
+-060421
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '25000', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('25000', 'File', '/file', '/admin', 'PAFile', NULL, '//localhost/dhammagrahaapi/assets/img/icons/folder.png', '0', NULL, '', 'Admin', '2021-03-22 08:29:19', '', '0000-00-00 00:00:00');
+
+-050421
+add biaya.sql
+
+-010421
+ALTER TABLE `user_persetujuan` ADD `Browser` CHAR(1) NULL DEFAULT NULL AFTER `IdUser`, ADD `Whatsapp` CHAR(1) NULL DEFAULT NULL AFTER `Browser`, ADD `Email` CHAR(1) NULL DEFAULT NULL AFTER `Whatsapp`;
+ALTER TABLE `acara` ADD `CatatanPenolakan` TEXT NULL DEFAULT NULL AFTER `Status`;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('24000', 'Persetujuan Acara', '/persetujuan-acara', '/admin', 'PAPersetujuanAcara', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', NULL, '', 'Admin', '2021-03-22 08:29:19', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '24000', 'N', 'N', 'N', 'N', 'N', '', '2021-03-22 08:31:20', '', '0000-00-00 00:00:00');
+add catatan_penolakan_acara.sql
+ALTER TABLE `content_template_tv` ADD `pdf_path` VARCHAR(225) NOT NULL AFTER `Show_times`;
+
+-290321
+ALTER TABLE `donasi_acara` ADD `UsernameDonasi` VARCHAR(255) NOT NULL AFTER `IdUser`;
+
+-300321
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'khusus', 'Masukkan ke Website?', 'checkbox', 'test', '', '0', '500', '0', NULL, 'N', '15', '2020-08-28 09:11:31', NULL, NULL);
+INSERT INTO `form_detail` (`FormId`, `sequence`, `Qid`, `idKhusus`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES ('6', '5', '1015', NULL, 'N', '', '2020-08-03 13:36:56', NULL, NULL);
+
+-260321
+add detail_acara_template_petugas.sql, detail_acara_master_petugas.sql
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'khusus', 'Masukkan ke template TV?', 'checkbox', 'test', '', '0', '500', '0', NULL, 'N', '15', '2020-08-28 09:11:31', NULL, NULL);
+INSERT INTO `form_detail` (`FormId`, `sequence`, `Qid`, `idKhusus`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES ('6', '4', '1014', NULL, 'N', '', '2020-08-03 13:36:56', NULL, NULL);
+
+-240321
+ALTER TABLE `donasi_acara` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+ALTER TABLE `donasi_acara` ADD `IdSubweb` INT(255) NOT NULL AFTER `IdAcara`;
+
+-230321
+add donasi_acara.sql
+-220321
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('23000', 'Template Persetujuan', '/template-persetujuan', '/admin', 'PATemplateKomunikasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', NULL, '', 'Admin', '2021-03-09 14:50:42', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+('AM', 23000, 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 00:32:50', '', '0000-00-00 00:00:00');
+ALTER TABLE `acara` ADD `LevelStatus` INT(10) NOT NULL COMMENT '1=perencanaan, 2=persetujuan, 3=persiapan, 4=pelaksanaan' AFTER `UrlZoom`;
+ALTER TABLE `content_template_tv` ADD `started_at` DATETIME NOT NULL AFTER `Show_times`, ADD `ended_at` DATETIME NOT NULL AFTER `started_at`, ADD `status` INT(2) NOT NULL AFTER `ended_at`;
+
+-190321
+naikin panel_shapes.sql,
+content_template_tv.sql,
+detail_template_tv.sql,
+shapes_tv.sql,
+template_televisi.sql,
+listed_tv.sql,
+ms_televisi.sql
+add acara.sql, detail_acara_master_ruangan.sql, detail_acara_template_ruangan.sql, schedule_acara.sql
+
+-170321
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '17200', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '17100', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '17000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:47', '', '0000-00-00 00:00:00'); 
+
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(17000, 'Maintain Komunikasi', '/maintain-komunikasi', '/admin', 'PAMaintainKomunikasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/group.png', '1', NULL, '', 'Admin', '2021-03-01 07:15:05', '', '0000-00-00 00:00:00'),
+(17100, 'Master Komunikasi', '/master-komunikasi', '/admin', 'PAMasterKomunikasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', 17000, '', 'Admin', '2021-02-19 03:28:09', '', '0000-00-00 00:00:00');
+
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('17200', 'Template Komunikasi', '/template-komunikasi', '/admin', 'PATemplateKomunikasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '17000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+add sql170321.sql
+
+-120321
+add detail_template_content_notif.sql, detail_template_ms_notif.sql, template_notif.sql 
+
+-080321
+ALTER TABLE `dokumen_master` CHANGE `url_video` `url_video` VARCHAR(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('20000', 'Maintain Televisi', '/maintain-televisi', '/admin', 'MaintainTelevisi', NULL, NULL, '1', NULL, '', '', current_timestamp(), '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('21000', 'Daftar Televisi', '/daftar-televisi', '/admin', 'DaftarTelevisi', NULL, NULL, '', '20000', '', '', current_timestamp(), '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('22000', 'Template Televisi', '/template-televisi', '/admin', 'TemplateTelevisi', NULL, NULL, '', '20000', '', '', current_timestamp(), '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '20000', NULL, NULL, NULL, NULL, '', '', current_timestamp(), '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '21000', NULL, NULL, NULL, NULL, '', '', current_timestamp(), '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '22000', NULL, NULL, NULL, NULL, '', '', current_timestamp(), '', '');
+
+
+-050321
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('19000', 'Maintain Notif', '/maintain-notif', '/admin', 'MaintainNotif', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/master-notif.svg', '1', NULL, '', 'Admin', '2021-03-01 09:12:18', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('19100', 'Master Notif', '/master-notif-acara', '/admin', 'PAMasterNotifAcara', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/master-notif.svg', '0', '19000', '', 'Admin', '2021-03-01 09:12:18', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('19200', 'Template Notif', '/template-notif', '/admin', 'PATemplateNotif', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/master-notif.svg', '0', '19000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '19000', 'N', 'N', 'N', 'N', '', '', current_timestamp(), '', ''), ('AM', '19100', 'N', 'N', 'N', 'N', '', '', current_timestamp(), '', ''), ('AM', '19200', 'N', 'N', 'N', 'N', '', '', current_timestamp(), '', '');
+
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11300', 'Master Lokasi Penyimpanan', '/master-lokasi-penyimpanan', '/admin', 'MasterLokasiPenyimpanan', NULL, NULL, '', '11000', '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '11300', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+ALTER TABLE `ms_lokasi_penyimpanan` ADD `IdSubweb` INT(225) NOT NULL AFTER `id`, ADD INDEX (`IdSubweb`);
+ALTER TABLE `dokumen_master` ADD `url_video` VARCHAR(225) NOT NULL AFTER `files`;
+
+-040321
+add ms_notif.sql
+ALTER TABLE `template_transportasi` ADD `Catatan` TEXT NOT NULL AFTER `Biaya`;
+
+-010321
+// menu acara
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('18000', 'Maintain Acara', '/maintain-acara', '/admin', 'MaintainAcara', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/event.png', '0', NULL, '', 'Admin', current_timestamp(), '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '18000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:52', '', '0000-00-00 00:00:00');
+// menu acara
+
+-030321
+ALTER TABLE `template_dekorasi` ADD `Biaya` VARCHAR(100) NULL DEFAULT NULL AFTER `NameTemplate`;
+ALTER TABLE `detail_template_dekorasi` ADD `Jumlah` VARCHAR(100) NULL DEFAULT NULL AFTER `IdDekorasi`;
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/hot-food.png' WHERE `admin_menu`.`Id` = 14000;
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/pot.png' WHERE `admin_menu`.`Id` = 12000;
+ALTER TABLE `template_dekorasi` ADD `Catatan` TEXT NULL DEFAULT NULL AFTER `NameTemplate`;
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '16100', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '16200', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '16000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:47', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('16200', 'Template Petugas', '/template-petugas', '/admin', 'PATemplatePetugas', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '16000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('16100', 'Master Petugas', '/master-petugas', '/admin', 'PAMasterPetugas', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '16000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('16000', 'Maintain Petugas', '/maintain-petugas', '/admin', 'PAMaintainPetugas', NULL, '//localhost/dhammagrahaapi/assets/img/icons/group.png', '1', NULL, '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+
+-020321
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/tools.png' WHERE `admin_menu`.`Id` = 11000;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('15000', 'Maintain Transportasi', '/maintenance-transportasi', '/admin', 'MaintainTransportasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/transport.png', '1', NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('15100', 'Master Transportasi', '/master-transportasi', '/admin', 'MasterTransportasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/transport.png', '0', '15000', '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('15200', 'Template Transportasi', '/template-transportasi', '/admin', 'TemplateTransportasi', NULL, NULL, '0', '15000', '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '15000', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '15100', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '15200', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+add ms_kendaraan,template_transportasi,detail_template_transportasi
+ALTER TABLE `dokumen_master` ADD `tipe_files` VARCHAR(225) NOT NULL AFTER `files`;
+
+-260221
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/document.png' WHERE `admin_menu`.`Id` = 13000;
+
+-250221
+add template_ruangan.sql, detail_template_ruangan.sql
+ALTER TABLE `detail_template_ruangan` ADD UNIQUE(`Id`);
+ALTER TABLE `detail_template_dokumentasi` ADD `IdTemplateDokumentasi` VARCHAR(225) NOT NULL AFTER `IdSubweb`, ADD INDEX (`IdTemplateDokumentasi`);
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '14300', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '14100', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '14200', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '14000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:47', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14000', 'Maintain Konsumsi', '/maintain-konsumsi', '/admin', 'PAMaintainKonsumsi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '1', NULL, '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14100', 'Master Makanan', '/master-makanan', '/admin', 'PAMasterMakanan', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', 14000, '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14200', 'Master Alat Makan', '/master-alat-makan', '/admin', 'PAAlatMakan', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', 14000, '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('14300', 'Template Konsumsi', '/template-konsumsi', '/admin', 'PATemplateKonsumsi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', '14000', '', 'Admin', '2021-02-19 10:28:09', '', '0000-00-00 00:00:00');
+add ms_makanan.sql, ms_alat_makan.sql, detail_template_dekorasi (1).sql, template_konsumsi.sql
+
+-240221
+UPDATE `admin_menu` SET `MenuName` = 'Maintain Dekorasi' WHERE `admin_menu`.`Id` = 12000;
+add detail_template_dekorasi.sql, tempalte_dekorasi.sql
+CREATE TABLE `template_dokumentasi` (
+  `Id` varchar(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `NamaTemplate` varchar(225) NOT NULL,
+  `Biaya` int(225) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `template_dokumentasi`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdSubweb` (`IdSubweb`);
+
+  CREATE TABLE `detail_template_dokumentasi` (
+  `Id` varchar(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `IdDokumentasi` varchar(225) NOT NULL,
+  `CreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `detail_template_dokumentasi`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdDokumentasi` (`IdDokumentasi`);
+
+  CREATE TABLE `ms_dokumen` (
+  `Id` varchar(225) NOT NULL,
+  `NameDokumen` varchar(225) NOT NULL,
+  `Type` varchar(225) NOT NULL,
+  `Biaya` int(225) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `ms_dokumen`
+  ADD PRIMARY KEY (`Id`);
+
+  UPDATE `admin_menu` SET `CreatedBy` = 'Admin' WHERE `admin_menu`.`Id` = 11200;
+  UPDATE `admin_menu` SET `CreatedBy` = 'Admin' WHERE `admin_menu`.`Id` = 11100;
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('13000', 'Maintain Dokumentasi', '/maintenance-dokumentasi', '/admin', 'MaintainDokumentasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '1', NULL, '', 'Admin', CURRENT_TIMESTAMP, '', '');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('13100', 'Master Dokumentasi', '/master-dokumentasi', '/admin', 'MasterDokumentasi', NULL, '', '0', '13000', '', 'Admin', CURRENT_TIMESTAMP, '', '');
+  INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('13200', 'Template Dokumentasi', '/template-dokumentasi', '/admin', 'TemplateDokumentasi', NULL, NULL, '0', '13000', '', 'Admin', CURRENT_TIMESTAMP, '', '');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '13000', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '13100', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '13200', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+  ALTER TABLE `ms_dokumen` ADD `IdSubweb` INT(225) NOT NULL AFTER `Id`, ADD INDEX (`IdSubweb`);
+  ALTER TABLE `detail_template_dokumentasi` ADD INDEX(`IdSubweb`);
+  ALTER TABLE `ms_dokumen` ADD `Catatan` TEXT NOT NULL AFTER `Biaya`;
+  ALTER TABLE `template_dokumentasi` ADD `Catatan` TEXT NOT NULL AFTER `Biaya`;
+
+
+-230221
+UPDATE `admin_menu` SET `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/user.png' WHERE `admin_menu`.`Id` = 11000;
+ALTER TABLE `template_perlengkapan` ADD `Biaya` INT(225) NOT NULL AFTER `Catatan`;
+ALTER TABLE `ms_alat` ADD `Jumlah` INT(225) NOT NULL AFTER `Biaya`;
+
+-220221
+add ms_ruangan.sql
+
+-170221
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '12000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:47', '', '0000-00-00 00:00:00'), ('AM', '12100', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00'), ('AM', '12200', 'N', 'N', 'N', 'N', 'N', '', '2021-02-17 07:32:50', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12000', 'Maintenance Dekorasi', '/maintenance-dekorasi', '/admin', 'MaintenanceDekorasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '1', NULL, '', 'Admin', '2020-07-27 09:44:39', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12100', 'Master Dekorasi', '/master-dekorasi', '/admin', 'PAMasterDekorasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '', '12000', '', 'Admin', '2021-02-16 08:50:45', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('12200', 'Template Dekorasi', '/template-dekorasi', '/admin', 'TemplateDekorasi', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '', '12000', '', 'Admin', '2021-02-16 08:50:45', '', '0000-00-00 00:00:00');
+add ms_dekorasi.sql
+
+-150221
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10000', 'Maintain Ruangan', '/ruangan', '/admin', 'PARuangan', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/building.svg', '1', NULL, '', 'Admin', '2020-07-27 02:44:39', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10100', 'Master Ruangan', '/masterruangan', '/admin', 'PAMasterRuangan', 'ni ni-bullet-list-67 text-info', NULL, '0', '10000', '', 'Admin', '2020-08-14 13:32:44', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10200', 'Template Ruangan', '/templateruangan', '/admin', 'PATemplateRuangan', 'ni ni-bullet-list-67 text-info', NULL, '0', '10000', '', 'Admin', '2020-08-14 13:32:44', '', '0000-00-00 00:00:00');
+
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '10100', 'N', 'N', 'N', 'N', 'N', '', current_timestamp(), '', ''), ('AM', '10200', 'N', 'N', 'N', 'N', 'N', '', current_timestamp(), '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '10000', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:47', '', '0000-00-00 00:00:00');
+
+UPDATE `admin_menu` SET `Id` = '10300' WHERE `admin_menu`.`Id` = 10100; UPDATE `admin_menu` SET `Id` = '10400' WHERE `admin_menu`.`Id` = 10200;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('10100', 'Master Lantai', '/masterlantai', '/admin', 'PAMasterLantai', 'ni ni-bullet-list-67 text-info', NULL, '0', '10000', '', 'Admin', '2021-02-16 23:11:06', '', '0000-00-00 00:00:00'), ('10200', 'Master Gedung', '/mastergedung', '/admin', 'PAMasterGedung', 'ni ni-bullet-list-67 text-info', NULL, '0', '10000', '', 'Admin', '2021-02-16 23:11:06', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '10300', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:52', '', '0000-00-00 00:00:00'), ('AM', '10400', 'N', 'N', 'N', 'N', '', '', '2021-02-15 14:31:52', '', '0000-00-00 00:00:00');
+DELETE FROM `admin_menu` WHERE `admin_menu`.`Id` = 10100
+UPDATE `admin_menu` SET `Id` = '10100' WHERE `admin_menu`.`Id` = 10200; UPDATE `admin_menu` SET `Id` = '10200' WHERE `admin_menu`.`Id` = 10300; UPDATE `admin_menu` SET `Id` = '10300' WHERE `admin_menu`.`Id` = 10400;
+add ms_gedung.sql, ms_lantai.sql, dokumen_master.sql
+
+-090221
+ALTER TABLE `kalender_kegiatan` CHANGE `Deskripsi` `Deskripsi` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `sub_web` ADD `IdGrupWA` VARCHAR(100) NULL DEFAULT NULL AFTER `Email`;
+
+-070221
+ALTER TABLE `content_gallery` CHANGE `Id` `Id` INT(255) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `content_gallery` ADD `IdAlbum` VARCHAR(255) NOT NULL AFTER `Image`, ADD `IdParentAlbum` VARCHAR(255) NOT NULL AFTER `IdAlbum`;
+
+-220121
+add access_token.sql, tipe_pertanyan_template.sql
+
+-180121
+add client.sql
+
+-130121
+add tipe_pertanyaan_kategori.sql
+
+-070121
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Ch&#257;y&#257;', 'text', 'bhikkhu', 'Ch&#257;y&#257;', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Upajjh&#257;ya S&#257;ma&#7751;era', 'Upajjh&#257;ya S&#257;ma&#7751;era', 'bhikkhu', 'Upajjh&#257;ya S&#257;ma&#7751;era', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Pabbajj&#257;cariya', 'Pabbajj&#257;cariya', 'bhikkhu', 'Pabbajj&#257;cariya', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Tempat Penahbisan S&#257;ma&#7751;era', 'Tempat Penahbisan S&#257;ma&#7751;era', 'bhikkhu', 'Tempat Penahbisan S&#257;ma&#7751;era', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Tempat Upasampada', 'Tempat Upasampada', 'bhikkhu', 'Tempat Upasampada', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Upajjh&#257;ya Bhikkhu', 'Upajjh&#257;ya Bhikkhu', 'bhikkhu', 'Upajjh&#257;ya Bhikkhu', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Kammav&#257;c&#257;cariya', 'Kammav&#257;c&#257;cariya','bhikkhu', 'Kammav&#257;c&#257;cariya', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Anus&#257;van&#257;cariya', 'Anus&#257;van&#257;cariya', 'bhikkhu', 'Anus&#257;van&#257;cariya', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:54:22', NULL, NULL);
+
+-221220[MD]
+ALTER TABLE `form_answer_pending` ADD `IdForward` INT NULL DEFAULT NULL AFTER `IdUser`;
+
+-161220[MD]
+ALTER TABLE `form_answer_approve` ADD `Status` CHAR(1) NULL DEFAULT 'N' AFTER `FormId`;
+ALTER TABLE `form_answer_approve` ADD `IdCuti` INT NULL DEFAULT NULL AFTER `Status`;
+add cuti.sql
+
+-151220[MD]
+ALTER TABLE `forms` ADD `AllApprove` INT(1) NULL DEFAULT NULL AFTER `NamaForm`;
+add form_answer_pending.sql, form_answer_approve.sql
+
+-071212[MD]
+ALTER TABLE `form_answer` ADD `IdApprove` INT NULL DEFAULT NULL AFTER `StatusPending`;
+add form_answer_flow.sql
+
+-021220[MD]
+ALTER TABLE `role` ADD `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `RecordStatus`;
+ALTER TABLE `role_menu` ADD `p_create` CHAR(1) NULL DEFAULT NULL COMMENT 'P=Pending N=Publish' AFTER `IdMenu`, ADD `p_edit` CHAR(1) NULL DEFAULT NULL COMMENT 'P=Pending N=Publish' AFTER `p_create`, ADD `p_delete` CHAR(1) NULL DEFAULT NULL COMMENT 'P=Pending N=Publish' AFTER `p_edit`;
+ALTER TABLE `role_menu` ADD `p_active` CHAR(1) NULL DEFAULT NULL COMMENT 'P=Pending N=Publish D=False' AFTER `p_delete`;
+ALTER TABLE `form_answer` ADD `IdPending` INT(11) NULL DEFAULT NULL AFTER `paymentStatus`, ADD `StatusPending` CHAR(1) NULL DEFAULT NULL AFTER `IdPending`;
+
+-011220
+add temp_user_join_meeting.sql
+
+-261120
+ALTER TABLE `kalender_kegiatan` ADD `ZoomStartUrl` VARCHAR(512) NULL DEFAULT NULL AFTER `ZoomId`, ADD `ZoomJoinUrl` VARCHAR(512) NULL DEFAULT NULL AFTER `ZoomStartUrl`;
+
+-231120[MD][MP]
+ALTER TABLE `tamplate` CHANGE `Background` `Background` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `tamplate` CHANGE `Logo` `Logo` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `BackgroundFasilitas` `BackgroundFasilitas` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+-201120[MD]
+UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AVH'; UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AMB'; UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AEV'; UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AED'; UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AEB'; UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'AMV';
+UPDATE `role` SET `RecordStatus` = 'D' WHERE `role`.`KodeRole` = 'ABK';
+UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 0; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 1000; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 2000; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 3000; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 3001; UPDATE `role_menu` SET `RecordStatus` = 'N' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 4150; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6000; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6100; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6200; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 6300; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8000; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8800; UPDATE `role_menu` SET `RecordStatus` = 'D' WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 8900;
+
+-191120[MD]
+UPDATE `admin_menu` SET `Icon` = NULL, `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/people.png' WHERE `admin_menu`.`Id` = 3000;
+UPDATE `admin_menu` SET `Icon` = NULL, `IconPng` = '//localhost/dhammagrahaapi/assets/img/icons/user.png' WHERE `admin_menu`.`Id` = 3001;
+
+-18112020[MD][MP]
+  CREATE TABLE `logpaymentstore` (
+    `id_payment` int(11) NOT NULL,
+    `cus_id` int(11) NOT NULL,
+    `cus_name` varchar(255) NOT NULL,
+    `subtotal` bigint(20) NOT NULL,
+    `status` enum('0','1') NOT NULL,
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `update_at` datetime DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `logpaymentstore`
+    ADD KEY `id_payment` (`id_payment`);
+  COMMIT;
+
+- 111120[MD]
+ALTER TABLE `item_payment`  ADD `id_item_cart` INT(11) NOT NULL  AFTER `idPayment`;
+UPDATE `question` SET `Type` = 'textarea', `UpdatedAt` = NULL, `DeletedAt` = NULL WHERE `question`.`Qid` = 3509;
+
+- 101120[MD]
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Alamat', 'AlamatTextarea', 'AlamatTextarea', '', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:57:43', NULL, NULL);
+ALTER TABLE `form_detail` ADD `idKhusus` INT NULL DEFAULT NULL AFTER `Qid`;
+
+- 091120[MD]
+ALTER TABLE `tamplate` ADD `IdTemplate` VARCHAR(255) NOT NULL AFTER `Id`;
+
+- 041120[MD][MP]
+ALTER TABLE `user` CHANGE `UpdatedAt` `UpdatedAt` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `user` ADD `lang` VARCHAR(2) NULL DEFAULT 'ID' AFTER `RecentPage`;
+
+- 261020 [MD]
+  ALTER TABLE `store_payment`  ADD `diskon` BIGINT NOT NULL  AFTER `cus_name`;
+  ALTER TABLE `store_payment`  ADD `ongkir` BIGINT NOT NULL  AFTER `subtotal`;
+  CREATE TABLE `item_payment` (
+    `id` int(11) NOT NULL,
+    `namaBarang` varchar(255) NOT NULL,
+    `harga` int(11) NOT NULL,
+    `qty` int(11) NOT NULL,
+    `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updatedAt` datetime DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  ALTER TABLE `item_payment`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  COMMIT;
+  ALTER TABLE `item_payment` ADD `id_payment` INT NOT NULL AFTER `id`, ADD INDEX (`id_payment`);
+add error_log.sql
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Alamat', 'AlamatProvinsi', 'AlamatProvinsi', 'Provinsi', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:57:43', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Kabupaten', 'AlamatKabupaten', 'AlamatKabupaten', '-', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:57:43', NULL, NULL);
+INSERT INTO `question` (`Qid`, `Jenis`, `Label`, `Type`, `Name`, `Placeholder`, `Min`, `MaxLength`, `Required`, `paymentType`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'standar', 'Kecamatan', 'AlamatKecamatan', 'AlamatKecamatan', '-', NULL, '255', '1', NULL, 'N', 'ADMIN', '2020-07-16 09:57:43', NULL, NULL);
+
+- 211020[MD][MP]
+ALTER TABLE `kalender_kegiatan` CHANGE `UpdatedAt` `UpdatedAt` TIMESTAMP NULL DEFAULT NULL, CHANGE `DeletedAt` `DeletedAt` TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `kalender_kegiatan` CHANGE `Id` `Id` INT(11) NOT NULL;
+ALTER TABLE `form_answer` CHANGE `value` `value` LONGTEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+- 071020[MD][MP]
+ALTER TABLE `kalender_kegiatan` CHANGE `Deskripsi` `Deskripsi` LONGTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+- 300920[MD][MB][MP]
+UPDATE `question` SET `Type` = 'suneditor', `UpdatedAt` = NULL, `DeletedAt` = NULL WHERE `question`.`Qid` = 36;
+
+- 290920[MD]
+UPDATE `question` SET `Type` = 'suneditor', `UpdatedAt` = NULL, `DeletedAt` = NULL WHERE `question`.`Qid` = 31;
+
+- 230920[MD][MP]
+ALTER TABLE `question` CHANGE `MaxLength` `MaxLength` VARCHAR(500) NOT NULL;
+
+- 170920[MD][MP]
+ALTER TABLE `form_answer` ADD `auth` INT(1) NOT NULL DEFAULT '0' AFTER `value`;
+
+- 160920[MD][MP]
+ALTER TABLE `tamplate`  ADD `BtnStoreBackgroundcolor` VARCHAR(255) NULL DEFAULT NULL  AFTER `UpdatedBy`;
+ALTER TABLE `tamplate`  ADD `BtnStoreFontcolor` VARCHAR(255) NULL DEFAULT NULL  AFTER `UpdatedBy`;
+
+- 150920[MD]
+ALTER TABLE `tamplate_kategori` CHANGE `Image` `Image` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `form_answer` CHANGE `paymentStatus` `paymentStatus` VARCHAR(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'D';
+ALTER TABLE `form_answer` ADD `OrderId` INT(255) NULL DEFAULT NULL AFTER `payment`;
+
+- 140920[MD]
+ALTER TABLE `pagestyle_news` ADD `CardNewsTitleHeader` VARCHAR(255) NOT NULL AFTER `CardNewsTitle`;
+ALTER TABLE `pagestyle_store` ADD `CardStoreTitleHeader` VARCHAR(255) NOT NULL AFTER `CardStoreTitle`;
+ALTER TABLE `pagestyle_gallery` ADD `CardGalleryTitleHeader` VARCHAR(255) NOT NULL AFTER `CardGalleryTitle`;
+ALTER TABLE `pagestyle_profile` ADD `CardProfileTitleHeader` VARCHAR(255) NOT NULL AFTER `CardProfileTitle`;
+ALTER TABLE `pagestyle_calender` ADD `titleKalenderHeader` VARCHAR(255) NOT NULL AFTER `titleKalender`;
+
+- 040920[MD]
+ALTER TABLE `form_answer` ADD `payment` INT(1) NOT NULL DEFAULT '0' AFTER `value`, ADD `paymentStatus` CHAR(1) NOT NULL DEFAULT 'D' AFTER `payment`;
+ALTER TABLE `form_answer` ADD `paymentType` VARCHAR(20) NULL DEFAULT NULL AFTER `payment`;
+ALTER TABLE `question` ADD `paymentType` VARCHAR(20) NULL DEFAULT NULL AFTER `Required`;
+ALTER TABLE `forms` ADD `payment` INT(1) NOT NULL DEFAULT '0' AFTER `NamaForm`;
+
+- 030920[MD]
+ALTER TABLE `sub_web` ADD `FormId` INT(255) NULL AFTER `KontakPerson`;
+
+- 020920
+ALTER TABLE `sub_web` ADD `Kode` VARCHAR(255) NULL AFTER `Id`;
+
+- 280820[MD][MP]
+ALTER TABLE `form_answer` ADD `sequence` INT(10) NOT NULL AFTER `IdSubWeb`;
+
+ALTER TABLE `form_answer` CHANGE `value` `value` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+- 260820[MD]
+add app_name at configDbDhammawangsa.php
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('SA', '3955', 'N', '', '2020-03-12 10:38:20', '', '0000-00-00 00:00:00');
+UPDATE `admin_menu` SET `IconPng` = '//stuudi.com/dhammawangsaDevAPI/assets/img/icons/form.png' WHERE `admin_menu`.`Id` = 3955; UPDATE `admin_menu` SET `IconPng` = '//stuudi.com/dhammawangsaDevAPI/assets/img/icons/form.png' WHERE `admin_menu`.`Id` = 3960;
+
+- 250820[MD]
+ALTER TABLE `form_assign` ADD `Id` INT NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`Id`);
+ALTER TABLE `pagestyle_store`  ADD `txtBoldStore` VARCHAR(255) NULL DEFAULT NULL  AFTER `BtnStoreFontcolor`,  ADD `txtItalicStore` VARCHAR(255) NULL DEFAULT NULL  AFTER `txtBoldStore`,  ADD `fontSizeStore` VARCHAR(255) NULL DEFAULT NULL  AFTER `txtItalicStore`,  ADD `fontStyleStore` VARCHAR(255) NULL DEFAULT NULL  AFTER `fontSizeStore`;
+DROP TABLE `question_list`
+add table question_list.sql
+
+- 240820[MD]
+ALTER TABLE `user_activity` CHANGE `CreatedAt` `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `UpdatedAt` `UpdatedAt` DATETIME on update CURRENT_TIMESTAMP NOT NULL;
+ALTER TABLE `user_activity` CHANGE `UpdatedAt` `UpdatedAt` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `user_activity` ADD UNIQUE( `IdUser`, `IdKegiatan`);
+UPDATE `admin_menu` SET `ParentId` = '3750' WHERE `admin_menu`.`Id` = 3960;
+ALTER TABLE `tamplate`  
+ADD `cardStoreBackgroundColor` TEXT(255) NULL DEFAULT NULL  AFTER `NameMarketplace`,  
+ADD `cardStoreFontColor` TEXT(255) NULL DEFAULT NULL  AFTER `cardStoreBackgroundColor`,  
+ADD `txtBoldStore` TEXT(255) NULL DEFAULT NULL  AFTER `cardStoreFontColor`,  
+ADD `txtItalicStore` TEXT(255) NULL DEFAULT NULL  AFTER `txtBoldStore`,  
+ADD `fontSizeStore` TEXT(255) NULL DEFAULT NULL  AFTER `txtItalicStore`,  
+ADD `fontStyleStore` TEXT(255) NOT NULL  AFTER `fontSizeStore`;
+
+- 190820[MP]
+add table user_activity.sql
+ALTER TABLE `donasi` CHANGE `UpdatedAt` `UpdatedAt` DATETIME on update CURRENT_TIMESTAMP NOT NULL;
+ALTER TABLE `donasi` ADD `IdSubweb` INT(255) NOT NULL AFTER `OrderId`;
+
+- 180820
+ALTER TABLE `pagestyle_footer` ADD `TxtBoldFooter` VARCHAR(255) NOT NULL AFTER `FooterTitle2`, ADD `TxtItalicFooter` VARCHAR(255) NOT NULL AFTER `TxtBoldFooter`, ADD `FontSizeFooter` VARCHAR(255) NOT NULL AFTER `TxtItalicFooter`, ADD `FontStyleFooter` VARCHAR(255) NOT NULL AFTER `FontSizeFooter`, ADD `TxtBoldFooterLink` VARCHAR(255) NOT NULL AFTER `FontStyleFooter`, ADD `TxtItalicFooterLink` VARCHAR(255) NOT NULL AFTER `TxtBoldFooterLink`, ADD `FontSizeFooterLink` VARCHAR(255) NOT NULL AFTER `TxtItalicFooterLink`, ADD `FontStyleFooterLink` VARCHAR(255) NOT NULL AFTER `FontSizeFooterLink`;
+DROP TABLE `absensi_siswa`, `daftar_guru`, `daftar_pelajaran`, `daftar_rombel`, `daftar_ruangan`, `daftar_sekolah`, `daftar_sesi`, `daftar_siswa`, `daftar_tahun_ajaran`, `daftar_tingkat`, `jadwal_pelajaran`, `kelas_siswa`, `sekolah`, `sekolah_kategori`, `sekolah_siswa`, `sekolah_user`, `tanggal`;
+
+- 160820[MD]
+ALTER TABLE `question` ADD `Min` VARCHAR(500) NULL DEFAULT NULL AFTER `Placeholder`;
+
+- 140820
+UPDATE `admin_menu` SET `Path` = '/Galeri' WHERE `admin_menu`.`Id` = 9000;
+DROP TABLE `forms`, `form_answer`, `form_detail`, `question`, `question_list`;
+add form build.sql
+
+- 120820
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('4200', 'Qr Code', '/qrcode', '/admin', 'PAQrCode', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/qr-code.svg', '0', NULL, '', 'Admin', '2020-07-27 16:38:40', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '4200', '', '', '2020-02-27 14:56:50', '', '0000-00-00 00:00:00');
+
+- 100820
+ALTER TABLE `tamplate`  ADD `StatusMarketplace` ENUM('0','1') NOT NULL COMMENT '0 = tidak ada market | 1 = ada marketnya'  AFTER `FontStyleKategori`;
+ALTER TABLE `tamplate`  ADD `NameMarketplace` VARCHAR(255) NULL DEFAULT NULL  AFTER `StatusMarketplace`;
+ALTER TABLE `sub_web` ADD `MenuFaq` VARCHAR(512) NOT NULL AFTER `YtOrg`, ADD `MenuBlog` VARCHAR(512) NOT NULL AFTER `MenuFaq`, ADD `MenuBantuan` VARCHAR(512) NOT NULL AFTER `MenuBlog`;
+
+- 300720
+  INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('SA', '4150', '', '', current_timestamp(), '', '');
+- 280720
+ALTER TABLE `tamplate` ADD `MenuTentang` VARCHAR(255) NOT NULL AFTER `FontStyleFooterLink`, ADD `MenuFaq` VARCHAR(255) NOT NULL AFTER `MenuTentang`, ADD `MenuKontak` VARCHAR(255) NOT NULL AFTER `MenuFaq`, ADD `MenuBantuan` VARCHAR(255) NOT NULL AFTER `MenuKontak`;
+
+- 270720
+add question_list.sql, question.sql, forms.sql, form_answare.sql, form_detail.sql, 
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(3955, 'Form', '/formulir', '/admin', 'Form', NULL, '//localhost/dhammagrahaapi/assets/img/icons/form.png', '0', NULL, '', 'Admin', '2020-07-10 07:09:34', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3955', '', '', '2020-01-02 10:22:33', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(3960, 'Permintaan', '/permintaan', '/admin', 'Permintaan', NULL, '//localhost/dhammagrahaapi/assets/img/icons/form.png', '0', 3750, '', 'Admin', '2020-07-27 02:50:17', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3960', '', '', '2020-01-02 10:22:33', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(3750, 'Maintain Website', '/manage-user', '/admin', 'RoleUser', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '1', NULL, '', 'Admin', '2020-07-27 02:44:39', '', '0000-00-00 00:00:00'),
+(3995, 'Isi Website', '/berita', '/admin', 'Berita', NULL, '//localhost/dhammagrahaapi/assets/img/icons/a.png', '1', NULL, '', 'Admin', '2020-05-11 04:12:23', '', '0000-00-00 00:00:00');
+UPDATE `admin_menu` SET `MenuName` = 'Desain Website' WHERE `admin_menu`.`Id` = 3700;
+UPDATE `admin_menu` SET `ParentId` = '3995' WHERE `admin_menu`.`Id` = 4000; UPDATE `admin_menu` SET `ParentId` = '3995' WHERE `admin_menu`.`Id` = 4100; UPDATE `admin_menu` SET `ParentId` = '3995' WHERE `admin_menu`.`Id` = 4150; UPDATE `admin_menu` SET `ParentId` = '3995' WHERE `admin_menu`.`Id` = 5000;
+UPDATE `admin_menu` SET `ParentId` = '3750' WHERE `admin_menu`.`Id` = 3800; UPDATE `admin_menu` SET `ParentId` = '3750' WHERE `admin_menu`.`Id` = 3900; UPDATE `admin_menu` SET `ParentId` = '3750' WHERE `admin_menu`.`Id` = 3950; UPDATE `admin_menu` SET `ParentId` = '3750' WHERE `admin_menu`.`Id` = 3955; UPDATE `admin_menu` SET `ParentId` = '3700' WHERE `admin_menu`.`Id` = 3960;
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3995', 'N', '', '2020-03-12 10:38:20', '', '0000-00-00 00:00:00');
+UPDATE `admin_menu` SET `ParentId` = '3995' WHERE `admin_menu`.`Id` = 9000;
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+('AM', 3750, 'N', '', '2020-03-12 03:38:20', '', '0000-00-00 00:00:00');
+
+- 240720
+ALTER TABLE `sub_web` ADD `FontSizeLogo` VARCHAR(255) NOT NULL AFTER `Logo`, ADD `FontStyleLogo` VARCHAR(255) NOT NULL AFTER `FontSizeLogo`, ADD `TxtItalicLogo` VARCHAR(255) NOT NULL AFTER `FontStyleLogo`, ADD `TxtBoldLogo` VARCHAR(255) NOT NULL AFTER `TxtItalicLogo`;
+
+- 220720
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('3700', 'Website Design', '/customtamplate', '/admin', 'InputTamplate1', 'ni ni-circle-08 text-pink', NULL, '0', NULL, '', 'Admin', '2020-02-25 03:21:20', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3700', '', '', '2020-01-02 10:22:33', '', '0000-00-00 00:00:00');
+
+- 200720
+ALTER TABLE `user` ADD `RecentPage` VARCHAR(255) NOT NULL AFTER `RecordStatus`;
+UPDATE `admin_menu` SET `MenuName` = 'Website Design' WHERE `admin_menu`.`Id` = 1000;
+
+- 080720
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+(4150, 'Store', 'http://localhost:8080/', 'http://localhost:8080/', 'Store', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/a.png', '0', NULL, '', 'Admin', '2020-07-06 07:11:52', '', '0000-00-00 00:00:00');
+
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES
+('AM', 4150, '', '', '2020-07-06 05:35:14', '', '0000-00-00 00:00:00');
+
+- 060720
+UPDATE `admin_menu` SET `Path` = '/profile' WHERE `admin_menu`.`Id` = 5000;
+
+ALTER TABLE `kalender_kegiatan` ADD `StreamLink` VARCHAR(500) NULL DEFAULT NULL AFTER `ZoomId`;
+
+- 03072020
+  ALTER TABLE `user`  ADD `IdStoreUser` INT NULL  AFTER `Id`;
+  CREATE TABLE `store_payment` (
+    `id_payment` int(11) NOT NULL,
+    `cus_id` int(11) NOT NULL,
+    `cus_name` varchar(255) NOT NULL,
+    `subtotal` int(20) NOT NULL,
+    `store_id` int(11) NOT NULL,
+    `status` enum('0','1') NOT NULL COMMENT '0 = belum dibayar; 1 = sudah dibayar',
+    `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated-at` datetime DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `store_payment`
+    ADD PRIMARY KEY (`id_payment`);
+
+  ALTER TABLE `store_payment`
+    MODIFY `id_payment` int(11) NOT NULL AUTO_INCREMENT;
+  COMMIT;
+
+
+- 260620
+drop all PRIMARY role_user
+ALTER TABLE `role_user` ADD `Id` INT(255) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`Id`);
+
+- 240620
+ALTER TABLE `berita` CHANGE `tanggal` `tanggal` DATETIME NULL DEFAULT NULL;
+
+- 230620
+ALTER TABLE `tamplate` ADD `TxtBoldFooterLink` VARCHAR(255) NOT NULL AFTER `FooterLinkColor`, ADD `TxtItalicFooterLink` VARCHAR(255) NOT NULL AFTER `TxtBoldFooterLink`, ADD `FontSizeFooterLink` VARCHAR(255) NOT NULL AFTER `TxtItalicFooterLink`, ADD `FontStyleFooterLink` VARCHAR(255) NOT NULL AFTER `FontSizeFooterLink`;
+
+- 220520
+ALTER TABLE `tamplate` ADD `TxtBoldKategori` VARCHAR(255) NOT NULL AFTER `TotalKategori`, ADD `TxtItalicKategori` VARCHAR(255) NOT NULL AFTER `TxtBoldKategori`, ADD `TxtColorKategori` VARCHAR(255) NOT NULL AFTER `TxtItalicKategori`, ADD `FontSizeKategori` VARCHAR(255) NOT NULL AFTER `TxtColorKategori`, ADD `FontStyleKategori` VARCHAR(255) NOT NULL AFTER `FontSizeKategori`;
+
+- 180620
+ALTER TABLE `tamplate`  ADD `TxtAlignBanner` VARCHAR(255) NOT NULL  AFTER `TxtColorBanner`;
+
+- 170620
+ALTER TABLE `tamplate` ADD `TxtBoldTitleFasilitas` VARCHAR(255) NOT NULL AFTER `FasilitasTextColor`, ADD `TxtItalicTitleFasilitas` VARCHAR(255) NOT NULL AFTER `TxtBoldTitleFasilitas`, ADD `FontSizeTitleFasilitas` VARCHAR(255) NOT NULL AFTER `TxtItalicTitleFasilitas`, ADD `FontStyleTitleFasilitas` VARCHAR(255) NOT NULL AFTER `FontSizeTitleFasilitas`, ADD `TxtBoldDeskripsiFasilitas` VARCHAR(255) NOT NULL AFTER `FontStyleTitleFasilitas`, ADD `TxtItalicDeskripsiFasilitas` VARCHAR(255) NOT NULL AFTER `TxtBoldDeskripsiFasilitas`, ADD `FontSizeDeskripsiFasilitas` VARCHAR(255) NOT NULL AFTER `TxtItalicDeskripsiFasilitas`, ADD `FontStyleDeskripsiFasilitas` VARCHAR(255) NOT NULL AFTER `FontSizeDeskripsiFasilitas`;
+
+- 160620
+ALTER TABLE `tamplate` ADD `HeaderUsernameColor` VARCHAR(255) NOT NULL AFTER `HeaderTextColor`;
+ALTER TABLE `role_user` ADD `mer_id` INT(255) NOT NULL AFTER `IdSubWeb`;
+ALTER TABLE `role` ADD `IdSubWeb` INT NOT NULL AFTER `Role`, ADD `RecordStatus` CHAR(1) NOT NULL DEFAULT 'N' AFTER `IdSubWeb`;
+add pagestyle-store
+
+-100620
+add daftar_teman.sql
+
+-090620
+ALTER TABLE `sub_web` ADD `TxtBanner` VARCHAR(255) NOT NULL AFTER `Logo`, ADD `TxtBoldBanner` VARCHAR(255) NOT NULL AFTER `TxtBanner`, ADD `TxtItalicBanner` VARCHAR(255) NOT NULL AFTER `TxtBoldBanner`, ADD `TxtColorBanner` VARCHAR(255) NOT NULL AFTER `TxtItalicBanner`, ADD `FontSizeBanner` VARCHAR(255) NOT NULL AFTER `TxtColorBanner`, ADD `FontStyleBanner` VARCHAR(255) NOT NULL AFTER `FontSizeBanner`;
+
+-080620
+ALTER TABLE `sub_web` ADD `FbOrg` VARCHAR(512) NOT NULL AFTER `Email`, ADD `TwitterOrg` VARCHAR(512) NOT NULL AFTER `FbOrg`, ADD `IgOrg` VARCHAR(512) NOT NULL AFTER `TwitterOrg`, ADD `YtOrg` VARCHAR(512) NOT NULL AFTER `IgOrg`;
+
+-040620
+ALTER TABLE `tamplate` CHANGE `TotalFasilitas` `TotalFasilitas` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0';
+ALTER TABLE `tamplate` ADD `TxtFooterTentang` VARCHAR(255) NOT NULL AFTER `TxtFooter`;
+
+-030620
+UPDATE `role_user` SET `IdSubWeb` = '0' WHERE `role_user`.`IdUser` = 15 AND `role_user`.`KodeRole` = 'SA';
+delete role user admin yg role AM
+
+-020620
+ALTER TABLE `tamplate` CHANGE `HeaderBarColor` `HeaderBarColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `HeaderLine1` `HeaderLine1` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `HeaderLine2` `HeaderLine2` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `HeaderTextColor` `HeaderTextColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `ColorBtnLogin` `ColorBtnLogin` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `ColorTxtBtnLogin` `ColorTxtBtnLogin` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `ColorBtnRegis` `ColorBtnRegis` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `ColorTxtBtnRegis` `ColorTxtBtnRegis` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `FasilitasTextColor` `FasilitasTextColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `FooterBackgroundColor` `FooterBackgroundColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `FooterFontColor` `FooterFontColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `FooterLinkColor` `FooterLinkColor` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `LinkFb` `LinkFb` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `LinkTwitter` `LinkTwitter` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `LinkIG` `LinkIG` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `LinkYt` `LinkYt` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `tamplate` ADD `TxtFooter` VARCHAR(255) NOT NULL AFTER `DeskFasilitas3`, ADD `TxtBoldFooter` VARCHAR(255) NOT NULL AFTER `TxtFooter`, ADD `TxtItalicFooter` VARCHAR(255) NOT NULL AFTER `TxtBoldFooter`, ADD `FontSizeFooter` VARCHAR(255) NOT NULL AFTER `TxtItalicFooter`, ADD `FontStyleFooter` VARCHAR(255) NOT NULL AFTER `FontSizeFooter`;
+ALTER TABLE `tamplate` ADD `TxtBoldBanner` VARCHAR(255) NOT NULL AFTER `TxtBanner`, ADD `TxtItalicBanner` VARCHAR(255) NOT NULL AFTER `TxtBoldBanner`, ADD `TxtColorBanner` VARCHAR(255) NOT NULL AFTER `TxtItalicBanner`, ADD `FontSizeBanner` VARCHAR(255) NOT NULL AFTER `TxtColorBanner`, ADD `FontStyleBanner` VARCHAR(255) NOT NULL AFTER `FontSizeBanner`;
+
+add grup_chat.sql
+
+ALTER TABLE `grup_chat` ADD `id_grup` INT NOT NULL AFTER `id`;
+ALTER TABLE `daftar_teman` ADD `room` VARCHAR(8) NULL DEFAULT NULL AFTER `blocker`;
+ALTER TABLE `grup` ADD `room` VARCHAR(8) NULL DEFAULT NULL AFTER `IdGrup`;
+ALTER TABLE `content_gallery` ADD `RecordStatus` CHAR(1) NOT NULL DEFAULT 'P' AFTER `Image`;
+ALTER TABLE `role` ADD `IdSubWeb` INT NOT NULL AFTER `Role`, ADD `RecordStatus` CHAR(1) NOT NULL DEFAULT 'N' AFTER `IdSubWeb`;
+ALTER TABLE `berita` CHANGE `foto` `foto` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `role` CHANGE `KodeRole` `KodeRole` CHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Role` `Role` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `role_user` CHANGE `KodeRole` `KodeRole` CHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `kalender_kegiatan` ADD `KegiatanFisik` TINYINT NULL DEFAULT NULL AFTER `Tempat`;
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('3800', 'User', '/manage-user', '/admin', 'RoleUser', NULL, '//localhost/dhammagrahaapi/assets/img/icons/user.png', '0', NULL, '', 'Admin', '2020-05-11 11:14:35', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3800', 'N', '', '2020-03-12 10:38:20', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('3900', 'Role', '/role', '/admin', 'Role', NULL, '//localhost/dhammagrahaapi/assets/img/icons/people.png', '0', NULL, '', 'Admin', '2020-05-11 11:14:35', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3900', 'N', '', '2020-03-12 10:38:20', '', '0000-00-00 00:00:00');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('3950', 'Approve', '/approve', '/admin', 'Approve', NULL, '//localhost/dhammagrahaapi/assets/img/icons/ceklis.png', '0', NULL, '', 'Admin', '2020-05-11 11:14:35', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '3950', 'N', '', '2020-03-12 10:38:20', '', '0000-00-00 00:00:00');
+
+add chat.sql
+
+-280520
+ALTER TABLE `tamplate` ADD `HeaderBarColor` VARCHAR(255) NULL DEFAULT NULL AFTER `TxtBanner`, ADD `HeaderLine1` VARCHAR(255) NULL DEFAULT NULL AFTER `HeaderBarColor`, ADD `HeaderLine2` VARCHAR(255) NULL DEFAULT NULL AFTER `HeaderLine1`, ADD `HeaderTextColor` VARCHAR(255) NULL DEFAULT NULL AFTER `HeaderLine2`, ADD `ColorBtnLogin` VARCHAR(255) NULL DEFAULT NULL AFTER `HeaderTextColor`, ADD `ColorTxtBtnLogin` VARCHAR(255) NULL DEFAULT NULL AFTER `ColorBtnLogin`, ADD `ColorBtnRegis` VARCHAR(255) NULL DEFAULT NULL AFTER `ColorTxtBtnLogin`, ADD `ColorTxtBtnRegis` VARCHAR(255) NULL DEFAULT NULL AFTER `ColorBtnRegis`;
+ALTER TABLE `tamplate` ADD `FasilitasTextColor` VARCHAR(255) NULL DEFAULT NULL AFTER `TotalFasilitas`;
+ALTER TABLE `tamplate` ADD `FooterBackgroundColor` VARCHAR(255) NULL DEFAULT NULL AFTER `DeskFasilitas3`, ADD `FooterFontColor` VARCHAR(255) NULL DEFAULT NULL AFTER `FooterBackgroundColor`, ADD `FooterLinkColor` VARCHAR(255) NULL DEFAULT NULL AFTER `FooterFontColor`, ADD `LinkFb` VARCHAR(255) NULL DEFAULT NULL AFTER `FooterLinkColor`, ADD `LinkTwitter` VARCHAR(255) NULL DEFAULT NULL AFTER `LinkFb`, ADD `LinkIG` VARCHAR(255) NULL DEFAULT NULL AFTER `LinkTwitter`, ADD `LinkYt` VARCHAR(255) NULL DEFAULT NULL AFTER `LinkIG`;
+ALTER TABLE `tamplate` CHANGE `CreatedAt` `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `UpdatedAt` `UpdatedAt` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-200520
+ALTER TABLE `tamplate` ADD `BackgroundFasilitas` VARCHAR(255) NOT NULL AFTER `Background`;
+
+-150520
+add group_user.sql
+add group.sql
+ALTER TABLE `berita` CHANGE `foto` `foto` VARCHAR(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `kalender_kegiatan` ADD `KegiatanFisik` TINYINT NULL DEFAULT NULL AFTER `Tempat`;
+
+-140520
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('3001', 'List User', '/listuser', '/admin', 'ListUser', 'ni ni-check-bold text-success', NULL, '0', NULL, '', 'Admin', '2019-11-19 19:51:13', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('SA', '3001', '', '', '2019-11-20 10:41:43', '', '0000-00-00 00:00:00');
+ALTER TABLE `role_user` ADD `CreatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `IdSubWeb`, ADD `UpdatedAt` DATETIME on update CURRENT_TIMESTAMP NOT NULL AFTER `CreatedAt`;
+UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 30 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 31 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 33 AND `role_user`.`KodeRole` = 'ABK'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 34 AND `role_user`.`KodeRole` = 'AVH'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 35 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 35 AND `role_user`.`KodeRole` = 'AMB'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 36 AND `role_user`.`KodeRole` = 'AMV'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 37 AND `role_user`.`KodeRole` = 'AEB'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 38 AND `role_user`.`KodeRole` = 'AEV'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 93 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 105 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 105 AND `role_user`.`KodeRole` = 'TES'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 106 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 107 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 107 AND `role_user`.`KodeRole` = 'TES'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 108 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 109 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 110 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 111 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 112 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 113 AND `role_user`.`KodeRole` = 'TES'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 115 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 116 AND `role_user`.`KodeRole` = 'TES'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 119 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 120 AND `role_user`.`KodeRole` = 'TES'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 121 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 124 AND `role_user`.`KodeRole` = 'AM'; UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:35:04' WHERE `role_user`.`IdUser` = 125 AND `role_user`.`KodeRole` = 'AM';
+UPDATE `role_user` SET `CreatedAt` = '2019-05-14 22:34:46' WHERE `role_user`.`IdUser` = 15 AND `role_user`.`KodeRole` = 'SA';
+
+-010520
+add table donasi
+
+-270420
+add table zoom
+ALTER TABLE `kalender_kegiatan` ADD `ZoomId` INT(255) NULL DEFAULT NULL AFTER `KegiatanOnline`;
+
+-200420
+ALTER TABLE `kalender_kegiatan` ADD `DonasiOnline` VARCHAR(512) NOT NULL COMMENT 'mid= tengah, end= akhir' AFTER `Duration`, ADD `DonasiOnlineTime` VARCHAR(512) NOT NULL AFTER `DonasiOnline`;
+
+-170420
+ALTER TABLE `user` ADD `RecordStatus` CHAR(1) NOT NULL DEFAULT 'N' AFTER `Status`;
+
+-160420
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 4000;
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 4100;
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 5000;
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'SA' AND `role_menu`.`IdMenu` = 9000;
+
+-140420
+ALTER TABLE `kalender_kegiatan` CHANGE `IdKegiatanOnline` `IdKegiatanOnline` VARCHAR(512) NOT NULL;
+
+-07042020
+ALTER TABLE `kalender_kegiatan` ADD `UserHost` VARCHAR(500) NOT NULL AFTER `IdKegiatanOnline`;
+ALTER TABLE `kegiatan_user` ADD `Reminder` DATETIME NULL DEFAULT NULL AFTER `idKegiatan`;
+ALTER TABLE `kegiatan_user` ADD `reject` CHAR(1) NULL DEFAULT NULL AFTER `Reminder`;
+
+-06042020
+ALTER TABLE `kalender_kegiatan` ADD `Reminder` DATETIME NULL DEFAULT NULL AFTER `TanggalSelesai`;
+ALTER TABLE `kalender_kegiatan` ADD `link` VARCHAR(200) NULL DEFAULT NULL AFTER `Reminder`;
+CREATE TABLE `user_notification` (
+  `user_name` varchar(64) NOT NULL,
+  `push_notification_id` varchar(128) NOT NULL,
+  `idSubWeb` int(11) DEFAULT NULL,
+  `record_status` char(1) NOT NULL DEFAULT 'N',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `user_notification`
+  ADD PRIMARY KEY (`user_name`,`push_notification_id`),
+  ADD KEY `ix_ss_user_notification_record_status` (`record_status`);
+ALTER TABLE `user` ADD `push_notification_id` VARCHAR(500) NULL DEFAULT NULL AFTER `OTP`;
+ALTER TABLE `berita` ADD `link` VARCHAR(500) NULL DEFAULT NULL AFTER `tanggal`;
+
+-28032020
+ALTER TABLE `kalender_kegiatan` ADD `KegiatanOnline` BOOLEAN NOT NULL AFTER `TanggalSelesai`, ADD `PasswordKegiatanOnline` VARCHAR(512) NOT NULL AFTER `KegiatanOnline`, ADD `Duration` INT(255) NOT NULL AFTER `PasswordKegiatanOnline`;
+ALTER TABLE `kalender_kegiatan` ADD `IdKegiatanOnline` INT(255) NOT NULL AFTER `KegiatanOnline`;
+ALTER TABLE `kalender_kegiatan` CHANGE `TanggalMulai` `TanggalMulai` DATETIME NOT NULL, CHANGE `TanggalSelesai` `TanggalSelesai` DATETIME NOT NULL;
+
+-27032020
+ALTER TABLE `kalender_kegiatan` CHANGE `TanggalMulai` `TanggalMulai` DATETIME NOT NULL, CHANGE `TanggalSelesai` `TanggalSelesai` DATETIME NOT NULL;
+
+-100320
+CREATE TABLE `kalender_kegiatan` (
+  `Id` int(11) NOT NULL,
+  `IdSubWeb` int(11) NOT NULL,
+  `Judul` varchar(255) NOT NULL,
+  `Deskripsi` text NOT NULL,
+  `Tempat` varchar(200) DEFAULT NULL,
+  `TanggalMulai` date NOT NULL,
+  `TanggalSelesai` date NOT NULL,
+  `RecordStatus` char(1) NOT NULL DEFAULT 'N',
+  `CreatedBy` int(10) DEFAULT NULL,
+  `CreatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `DeletedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `kalender_kegiatan`
+  ADD PRIMARY KEY (`Id`);
+ALTER TABLE `kalender_kegiatan`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+CREATE TABLE `kegiatan_user` (
+  `idUser` int(11) NOT NULL,
+  `idKegiatan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `kegiatan_user`
+  ADD PRIMARY KEY (`idUser`,`idKegiatan`);
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) 
+VALUES(4100, 'Kalender', '/kalender', '/admin', 'KalenderKegiatan', NULL, '//localhost/dhammagrahaAPI-v.1.3.0/assets/img/icons/a.png', '0', NULL, '', 'Admin', '2020-02-25 03:21:20', '', '0000-00-00 00:00:00')
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) 
+VALUES ('AM', '4100', '', '', '2020-02-27 14:56:50', '', '0000-00-00 00:00:00');
+CREATE TABLE `user_subscribe` (
+  `idUser` int(11) NOT NULL,
+  `idSubWeb` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `pagestyle_calender` (
+  `Id` int(11) NOT NULL,
+  `IdContentTamplateSub` int(11) NOT NULL,
+  `temaKalender` varchar(20) NOT NULL DEFAULT 'default',
+  `titleKalender` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `pagestyle_calender`
+  ADD PRIMARY KEY (`Id`);
+  ALTER TABLE `pagestyle_calender`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pagestyle_orderlist` ADD `Order` INT(2) NOT NULL AFTER `IdContentTamplateSub`;
+
+-030320
+ALTER TABLE `pagestyle_orderlist` ADD `Order` INT(2) NOT NULL AFTER `IdContentTamplateSub`;
+
+-270220
+ALTER TABLE `status_tempat_sub_web` CHANGE `Nama` `Nama` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+INSERT INTO `status_tempat_sub_web` (`id`, `Nama`, `StatusUpasampada`, `StatusSamanera`, `RecordStatus`, `CreatedAt`, `UpdatedAt`, `DeletedAt`) VALUES (NULL, 'Pusdiklat Buddhis Sikkhādama Santibhūmi, BSD', NULL, 'Y', 'N', CURRENT_TIMESTAMP, NULL, NULL);
+ALTER TABLE `status_tempat_sub_web` CHANGE `StatusUpasampada` `StatusUpasampada` CHAR(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Y = tersedia, Null = tidak tersedia', CHANGE `StatusSamanera` `StatusSamanera` CHAR(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'Y = tersedia, Null = tidak tersedia';
+
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 2000;
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 8000;
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '4000', '', '', current_timestamp(), '', ''), ('AM', '5000', '', '', current_timestamp(), '', ''), ('AM', '9000', '', '', current_timestamp(), '', '');
+
+-240220
+ALTER TABLE `penghargaan_bhikkhu` CHANGE `Penghargaan` `Penghargaan` VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+ALTER TABLE `pendidikan_user` CHANGE `Pendidikan` `Pendidikan` VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+-120220
+ALTER TABLE `daftar_bhikku` CHANGE `Id` `Id` INT(255) NOT NULL AUTO_INCREMENT, CHANGE `IdSubWeb` `IdSubWeb` INT(255) NOT NULL, CHANGE `IdUser` `IdUser` INT(255) NULL DEFAULT NULL, CHANGE `Nama` `Nama` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Chaya` `Chaya` VARCHAR(512) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `TempatLahir` `TempatLahir` VARCHAR(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL, CHANGE `NamaAyah` `NamaAyah` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `NamaIbu` `NamaIbu` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Alamat` `Alamat` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `AlamatKTP` `AlamatKTP` VARCHAR(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `PFormal` `PFormal` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `JenjangPendidikanFormal` `JenjangPendidikanFormal` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `JabatanOrganisasi` `JabatanOrganisasi` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `email` CHANGE `Id` `Id` INT(255) NOT NULL AUTO_INCREMENT, CHANGE `IdBhikkhu` `IdBhikkhu` INT(255) NOT NULL, CHANGE `Email` `Email` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `pendidikan_user` CHANGE `Id` `Id` INT(255) NOT NULL AUTO_INCREMENT, CHANGE `IdBhikkhu` `IdBhikkhu` INT(255) NOT NULL, CHANGE `Pendidikan` `Pendidikan` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `penghargaan_bhikkhu` CHANGE `Id` `Id` INT(255) NOT NULL AUTO_INCREMENT, CHANGE `IdBhikkhu` `IdBhikkhu` INT(255) NOT NULL, CHANGE `Penghargaan` `Penghargaan` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Tipe` `Tipe` VARCHAR(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Dokumen` `Dokumen` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Tahun` `Tahun` YEAR(4) NULL DEFAULT NULL, CHANGE `CreatedAt` `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `UpdatedAt` `UpdatedAt` TIMESTAMP NULL DEFAULT NULL, CHANGE `DeletedAt` `DeletedAt` TIMESTAMP NULL DEFAULT NULL;
+ALTER TABLE `user` CHANGE `Username` `Username` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Password` `Password` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `NamaLengkap` `NamaLengkap` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Foto` `Foto` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `Email` `Email` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, CHANGE `NoTlp` `NoTlp` VARCHAR(521) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Alamat` `Alamat` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `sub_web` CHANGE `NamaOrganisasi` `NamaOrganisasi` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `AlamatOrganisasi` `AlamatOrganisasi` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `NoTelp` `NoTelp` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Email` `Email` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Ketua` `Ketua` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `KontakPerson` `KontakPerson` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Image` `Image` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL, CHANGE `Logo` `Logo` VARCHAR(512) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+-2901
+ALTER TABLE `user` CHANGE `NoTlp` `NoTlp` VARCHAR(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `user` ADD UNIQUE(`NoTlp`);
+
+-2701
+ALTER TABLE `tamplate_kategori` CHANGE `Name` `Name` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+
+-1501
+ALTER TABLE `pendidikan_user` CHANGE `Pendidikan` `Pendidikan` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+
+-1301
+ALTER TABLE `berita` CHANGE `isiBerita` `isiBerita` MEDIUMTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+-0901
+ALTER TABLE `daftar_bhikku` ADD `sendNotifTo` VARCHAR(50) NOT NULL AFTER `RecordStatus`, ADD `sendNotifAt` DATETIME NOT NULL AFTER `sendNotifTo`;
+
+-0701
+ALTER TABLE `user` CHANGE `CreatedAt` `CreatedAt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `user` CHANGE `UpdatedAt` `UpdatedAt` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL;
+
+-0401
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8100; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8200; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8300; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8400; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8500; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8600; 
+UPDATE `admin_menu` SET `RecordStatus` = 'D' WHERE `admin_menu`.`Id` = 8700;
+
+-0201
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 2000;
+DELETE FROM `role_menu` WHERE `role_menu`.`KodeRole` = 'AM' AND `role_menu`.`IdMenu` = 8000;
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '4000', '', '', CURRENT_TIMESTAMP, '', ''), ('AM', '5000', '', '', CURRENT_TIMESTAMP, '', '');
+
+-2612
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('6200', 'Confirm Bhikkhu', '/confirmbhikkhu', '/admin', 'ConfirmBhikku', 'ni ni-check-bold text-success', NULL, '0', '6000', '', 'Admin', '2019-11-22 13:16:47', '', '0000-00-00 00:00:00');
+
+-2312
+UPDATE `user` SET `OTP` = '653438' WHERE `user`.`Id` = 32; UPDATE `user` SET `OTP` = '653439' WHERE `user`.`Id` = 33; UPDATE `user` SET `OTP` = '653467' WHERE `user`.`Id` = 34; UPDATE `user` SET `OTP` = '653468' WHERE `user`.`Id` = 35; UPDATE `user` SET `OTP` = '653469' WHERE `user`.`Id` = 36; UPDATE `user` SET `OTP` = '653470' WHERE `user`.`Id` = 37; UPDATE `user` SET `OTP` = '653471' WHERE `user`.`Id` = 38;
+ALTER TABLE `user` ADD UNIQUE(`OTP`);
+
+-101219
+ALTER TABLE `user` CHANGE `OTP` `OTP` VARCHAR(11) NOT NULL DEFAULT '000000';
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('8000', 'Gallery', '/daftargallery', '/admin', 'DaftarGallery', 'ni ni-bullet-list-67 text-info', NULL, '0', NULL, '', 'Admin', '2019-11-19 19:50:29', '', '0000-00-00 00:00:00');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '8000', '', '', CURRENT_TIMESTAMP, '', '');
+
+-051219
+ALTER TABLE `daftar_bhikku` ADD `IdUser` INT(8) NULL DEFAULT NULL AFTER `IdSubWeb`;
+
+-181119
+ALTER TABLE `role_user` CHANGE `KodeRole` `KodeRole` CHAR(3) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `role` CHANGE `KodeRole` `KodeRole` CHAR(3) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `role` CHANGE `Role` `Role` VARCHAR(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+INSERT INTO `role` (`KodeRole`, `Role`) VALUES ('AED', 'Admin Export Data'), ('AEV', 'Admin Export Vihara'), ('AEB', 'Admin Export Bhiku'), ('ACF', 'Admin Confirm Website');
+SELECT am.* FROM user u INNER JOIN role_user ru ON u.Id = ru.IdUser INNER JOIN role_menu rm ON ru.KodeRole = rm.KodeRole INNER JOIN admin_menu am ON rm.IdMenu = am.Id WHERE u.Id = 32;
+
+-131119
+ALTER TABLE `kategori_sub_web` CHANGE `IdTemplateKategori` `IdTemplateKategori` VARCHAR(255) NULL DEFAULT NULL;
+SELECT tk.Name AS Kategori, tk.Id AS IdKategori, tk.*, sb.* FROM tamplate_kategori tk 
+        LEFT JOIN kategori_sub_web ksw ON tk.Id = ksw.IdTemplateKategori 
+        LEFT JOIN sub_web sb ON ksw.IdSub = sb.Id AND sb.Status = 1;
+ALTER TABLE `tamplate_kategori` CHANGE `Id` `Id` VARCHAR(255) NOT NULL;
+ALTER TABLE `tamplate_kategori` ADD UNIQUE(`Id`);
+
+-141019
+ALTER TABLE `sub_web` ADD `Status` INT(1) NOT NULL COMMENT '0=inactive, 1=active' AFTER `Logo`;
+
+-101019
+ALTER TABLE `user` ADD `OTP` INT NOT NULL AFTER `Password`;
+
+-1210
+ALTER TABLE `user` ADD `Status` VARCHAR(5) NOT NULL AFTER `KodePos`;
+ALTER TABLE `user` CHANGE `Status` `Status` VARCHAR(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'u' COMMENT 'v= verified, u= unverified';
+
+-150221
+CREATE TABLE `ms_alat` (
+  `Id` int(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `NameAlat` varchar(225) NOT NULL,
+  `Biaya` int(225) NOT NULL,
+  `KodeLokasi` varchar(225) NOT NULL,
+  `KodeBarang` varchar(225) NOT NULL,
+  `CreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `ms_alat`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdSubweb` (`IdSubweb`);
+ALTER TABLE `ms_alat` CHANGE `Id` `Id` VARCHAR(225) NOT NULL;
+
+CREATE TABLE `ms_lokasi_penyimpanan` (
+  `id` int(225) NOT NULL,
+  `KodeLokasi` varchar(225) NOT NULL,
+  `Lokasi` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `ms_lokasi_penyimpanan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `KodeLokasi` (`KodeLokasi`);
+ALTER TABLE `ms_lokasi_penyimpanan` CHANGE `id` `id` VARCHAR(225) NOT NULL;
+ALTER TABLE `ms_lokasi_penyimpanan` ADD `CreatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `Lokasi`, ADD `UpdatedAt` DATETIME NULL DEFAULT NULL AFTER `CreatedAt`;
+
+CREATE TABLE `dokumen_master` (
+  `id` int(225) NOT NULL,
+  `id_master` varchar(225) NOT NULL,
+  `catatan` text NOT NULL,
+  `file` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `dokumen_master`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_master` (`id_master`);
+ALTER TABLE `dokumen_master` ADD `CreatedAt` DATETIME NULL DEFAULT CURRENT_TIMESTAMP AFTER `file`, ADD `UpdatedAt` DATETIME NULL DEFAULT NULL AFTER `CreatedAt`;
+
+CREATE TABLE `ms_bahan` (
+  `Id` varchar(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `NameBahan` varchar(225) NOT NULL,
+  `Biaya` int(225) NOT NULL,
+  `KodeLokasi` varchar(225) NOT NULL,
+  `KodeBarang` varchar(225) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `ms_bahan`
+  ADD PRIMARY KEY (`Id`);
+ALTER TABLE `ms_bahan` ADD INDEX(`IdSubweb`);
+ALTER TABLE `ms_bahan` ADD INDEX(`KodeLokasi`);
+
+CREATE TABLE `detail_template_perlengkapan` (
+  `Id` int(225) NOT NULL,
+  `idTemplatePerlengkapan` int(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `IdAlat` varchar(225) NOT NULL,
+  `IdBahan` varchar(225) NOT NULL,
+  `Jumlah` int(255) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `detail_template_perlengkapan`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `idTemplatePerlengkapan` (`idTemplatePerlengkapan`),
+  ADD KEY `IdSubweb` (`IdSubweb`),
+  ADD KEY `IdAlat` (`IdAlat`),
+  ADD KEY `IdBahan` (`IdBahan`);
+
+CREATE TABLE `template_perlengkapan` (
+  `Id` int(225) NOT NULL,
+  `IdSubweb` int(225) NOT NULL,
+  `NamaTemplate` varchar(225) NOT NULL,
+  `IdBiaya` int(225) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `template_perlengkapan`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `IdSubweb` (`IdSubweb`),
+  ADD KEY `IdBiaya` (`IdBiaya`);
+
+CREATE TABLE `detail_acara_template_perlengkapan` (
+  `Id` int(225) NOT NULL,
+  `idTemplatePerlengkapan` int(225) NOT NULL,
+  `IdAcara` int(225) NOT NULL,
+  `NameAlat` varchar(225) NOT NULL,
+  `NameBahan` varchar(225) NOT NULL,
+  `Jumlah` int(225) NOT NULL,
+  `Biaya` int(225) NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `UpdatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE `detail_acara_template_perlengkapan`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `idTemplatePerlengkapan` (`idTemplatePerlengkapan`),
+  ADD KEY `IdAcara` (`IdAcara`);
+
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11000', 'Maintain Perlengkapan', '/maintenance-perlengkapan', '/admin', 'MaintainPerlengkapan', NULL, NULL, '1', NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11100', 'Master Perlengkapan', '/master-perlengkapan', '/admin', 'MasterPerlengkapan', NULL, NULL, '', '11000', '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `admin_menu` (`Id`, `MenuName`, `Path`, `Layout`, `JsxComponent`, `Icon`, `IconPng`, `HasDropDownMenu`, `ParentId`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('11200', 'Template Perlengkapan', '/template-perlengkapan', '/admin', 'TemplatePerlengkapan', NULL, NULL, '11000', NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '11000', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '11100', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+INSERT INTO `role_menu` (`KodeRole`, `IdMenu`, `p_create`, `p_edit`, `p_delete`, `p_active`, `RecordStatus`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`) VALUES ('AM', '11200', NULL, NULL, NULL, NULL, '', '', CURRENT_TIMESTAMP, '', '');
+ALTER TABLE `dokumen_master` CHANGE `id` `id` INT(225) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dokumen_master` ADD `thumbnail` INT(2) NOT NULL DEFAULT '0' AFTER `file`;
+ALTER TABLE `dokumen_master` CHANGE `file` `files` VARCHAR(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `ms_alat` CHANGE `NameAlat` `NamePeralatan` VARCHAR(225) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+ALTER TABLE `ms_alat` ADD `Id_tipe` VARCHAR(225) NOT NULL AFTER `KodeBarang`, ADD INDEX (`Id_tipe`);
+UPDATE `admin_menu` SET `HasDropDownMenu` = '0' WHERE `admin_menu`.`Id` = 11100; UPDATE `admin_menu` SET `HasDropDownMenu` = '0', `ParentId` = '11000' WHERE `admin_menu`.`Id` = 11200;
+ALTER TABLE `template_perlengkapan` CHANGE `Id` `Id` VARCHAR(225) NOT NULL;
+ALTER TABLE `detail_template_perlengkapan` CHANGE `Id` `Id` VARCHAR(225) NOT NULL, CHANGE `idTemplatePerlengkapan` `idTemplatePerlengkapan` VARCHAR(225) NOT NULL;
+ALTER TABLE `template_perlengkapan` ADD `Catatan` TEXT NOT NULL AFTER `NamaTemplate`;
